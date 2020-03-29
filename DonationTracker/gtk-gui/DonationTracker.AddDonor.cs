@@ -25,7 +25,7 @@ namespace DonationTracker
 			global::Stetic.Gui.Initialize(this);
 			// Widget DonationTracker.AddDonor
 			this.Name = "DonationTracker.AddDonor";
-			this.Title = global::Mono.Unix.Catalog.GetString("AddDonor");
+			this.Title = global::Mono.Unix.Catalog.GetString("Add Donor");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child DonationTracker.AddDonor.Gtk.Container+ContainerChild
 			this.fixed1 = new global::Gtk.Fixed();
@@ -90,7 +90,7 @@ namespace DonationTracker
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.label5 = new global::Gtk.Label();
 			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("Donor");
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("Amount");
 			this.fixed1.Add(this.label5);
 			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.label5]));
 			w7.X = 29;
