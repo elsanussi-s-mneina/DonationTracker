@@ -12,7 +12,7 @@ namespace DonationTracker.Desktop
 
 		private global::Gtk.Entry AmountTextBox;
 
-		private global::Gtk.Button button1;
+		private global::Gtk.Button DonorAdditionButton;
 
 		private global::Gtk.Label label3;
 
@@ -62,13 +62,13 @@ namespace DonationTracker.Desktop
 			w3.X = 125;
 			w3.Y = 187;
 			// Container child fixed1.Gtk.Fixed+FixedChild
-			this.button1 = new global::Gtk.Button();
-			this.button1.CanFocus = true;
-			this.button1.Name = "button1";
-			this.button1.UseUnderline = true;
-			this.button1.Label = global::Mono.Unix.Catalog.GetString("Add Donor");
-			this.fixed1.Add(this.button1);
-			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.button1]));
+			this.DonorAdditionButton = new global::Gtk.Button();
+			this.DonorAdditionButton.CanFocus = true;
+			this.DonorAdditionButton.Name = "DonorAdditionButton";
+			this.DonorAdditionButton.UseUnderline = true;
+			this.DonorAdditionButton.Label = global::Mono.Unix.Catalog.GetString("Add Donor");
+			this.fixed1.Add(this.DonorAdditionButton);
+			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.DonorAdditionButton]));
 			w4.X = 282;
 			w4.Y = 254;
 			// Container child fixed1.Gtk.Fixed+FixedChild
@@ -103,7 +103,7 @@ namespace DonationTracker.Desktop
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show();
-			this.button1.Clicked += new global::System.EventHandler(this.AddDonor);
+			this.DonorAdditionButton.Clicked += new global::System.EventHandler(this.AddDonor);
 		}
 	}
 }
