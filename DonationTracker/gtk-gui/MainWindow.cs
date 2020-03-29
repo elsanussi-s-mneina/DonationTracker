@@ -57,17 +57,17 @@ public partial class MainWindow
 		this.button2.Label = global::Mono.Unix.Catalog.GetString("Start Adding Donors");
 		this.fixed1.Add(this.button2);
 		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.button2]));
-		w2.X = 368;
-		w2.Y = 220;
+		w2.X = 206;
+		w2.Y = 34;
 		this.Add(this.fixed1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
 		this.DefaultWidth = 499;
-		this.DefaultHeight = 300;
+		this.DefaultHeight = 125;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
-		this.button2.Clicked += new global::System.EventHandler(this.AddDonorWindow);
+		this.button2.Clicked += new global::System.EventHandler(this.ShowDonorAdditionWindow);
 	}
 }

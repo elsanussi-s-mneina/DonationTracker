@@ -1,12 +1,17 @@
 ﻿using System;
 using Gtk;
-using DonationTracker;
+using DonationTracker.Desktop;
 
 public partial class MainWindow : Gtk.Window
 {
+    DesktopOperations operations = new DesktopOperations();
+
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
+
+
+
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -15,9 +20,12 @@ public partial class MainWindow : Gtk.Window
         a.RetVal = true;
     }
 
-    protected void AddDonorWindow(object sender, EventArgs e)
+    protected void ShowDonorAdditionWindow(object sender, EventArgs e)
     {
-        var window = new AddDonor();
+        var window = new DonorAdditionWindow(operations);
         window.Show();
     }
+
+
+
 }

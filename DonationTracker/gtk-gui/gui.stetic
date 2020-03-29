@@ -5,7 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/DonationTracker.exe" internal="true" />
+    <widget-library name="../bin/Release/DonationTracker.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="499 125">
     <action-group name="Default">
@@ -68,7 +68,7 @@
             <property name="Type">TextOnly</property>
             <property name="Label" translatable="yes">Start Adding Donors</property>
             <property name="UseUnderline">True</property>
-            <signal name="Clicked" handler="AddDonorWindow" after="yes" />
+            <signal name="Clicked" handler="ShowDonorAdditionWindow" />
           </widget>
           <packing>
             <property name="X">206</property>
@@ -78,7 +78,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="DonationTracker.AddDonor" design-size="400 300">
+  <widget class="Gtk.Window" id="DonationTracker.Desktop.DonorAdditionWindow" design-size="400 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Add Donor</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -87,7 +87,7 @@
         <property name="MemberName" />
         <property name="HasWindow">False</property>
         <child>
-          <widget class="Gtk.Entry" id="entry1">
+          <widget class="Gtk.Entry" id="FirstNameTextBox">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
@@ -99,7 +99,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Entry" id="entry2">
+          <widget class="Gtk.Entry" id="LastNameTextBox">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
@@ -111,7 +111,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Entry" id="entry3">
+          <widget class="Gtk.Entry" id="AmountTextBox">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
@@ -129,6 +129,7 @@
             <property name="Type">TextOnly</property>
             <property name="Label" translatable="yes">Add Donor</property>
             <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="AddDonor" />
           </widget>
           <packing>
             <property name="X">282</property>
