@@ -38,7 +38,7 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DonationTracker.Integration\DonationTracker.Integration.csproj">
+    <ProjectReference Include="..\DonationTracker_IntegrationLayer\DonationTracker.Integration.csproj">
       <Project>{004CE5E0-02BE-46A2-A7BA-B0AA577DF968}</Project>
       <Name>DonationTracker.Integration</Name>
       <IncludeInPackage>true</IncludeInPackage>

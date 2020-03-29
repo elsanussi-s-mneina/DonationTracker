@@ -65,11 +65,11 @@
     <Compile Include="gtk-gui\DonationTracker.Desktop.DonorAdditionWindow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DonationTracker.Service\DonationTracker.Service.csproj">
+    <ProjectReference Include="..\DonationTracker_ServiceLayer\DonationTracker.Service.csproj">
       <Project>{AB1A404E-37B6-4BA3-9D37-C659D0B9396F}</Project>
       <Name>DonationTracker.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DonationTracker.Integration\DonationTracker.Integration.csproj">
+    <ProjectReference Include="..\DonationTracker_IntegrationLayer\DonationTracker.Integration.csproj">
       <Project>{004CE5E0-02BE-46A2-A7BA-B0AA577DF968}</Project>
       <Name>DonationTracker.Integration</Name>
     </ProjectReference>
