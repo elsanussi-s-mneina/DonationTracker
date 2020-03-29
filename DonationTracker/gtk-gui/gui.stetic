@@ -7,15 +7,42 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/DonationTracker.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
+  <widget class="Gtk.Window" id="MainWindow" design-size="493 300">
+    <action-group name="Default">
+      <action id="dfdAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">dfd</property>
+        <property name="ShortLabel" translatable="yes">dfd</property>
+      </action>
+      <action id="dfdgdfsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">dfdgdfs</property>
+        <property name="ShortLabel" translatable="yes">dfdgdfs</property>
+      </action>
+      <action id="dsfsdfAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">dsfsdf</property>
+        <property name="ShortLabel" translatable="yes">dsfsdf</property>
+      </action>
+      <action id="dfdAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">dfd</property>
+        <property name="ShortLabel" translatable="yes">dfd</property>
+      </action>
+      <action id="abdcAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">abdc</property>
+        <property name="ShortLabel" translatable="yes">abdc</property>
+      </action>
+    </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.VBox" id="vbox1">
+      <widget class="Gtk.Fixed" id="fixed1">
         <property name="MemberName" />
-        <property name="Spacing">6</property>
+        <property name="HasWindow">False</property>
         <child>
           <placeholder />
         </child>
@@ -23,18 +50,119 @@
           <placeholder />
         </child>
         <child>
-          <widget class="Gtk.Button" id="AddDonationButton">
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button2">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">Add Button</property>
+            <property name="Label" translatable="yes">Add Donor Window</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="AddDonorWindow" after="yes" />
+          </widget>
+          <packing>
+            <property name="X">368</property>
+            <property name="Y">220</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="DonationTracker.AddDonor" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">AddDonor</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <widget class="Gtk.Fixed" id="fixed1">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.Entry" id="entry1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">125</property>
+            <property name="Y">64</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entry2">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">125</property>
+            <property name="Y">125</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="entry3">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">125</property>
+            <property name="Y">187</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Add Donor</property>
             <property name="UseUnderline">True</property>
           </widget>
           <packing>
-            <property name="Position">2</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
+            <property name="X">282</property>
+            <property name="Y">254</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label3">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">First Name</property>
+          </widget>
+          <packing>
+            <property name="X">29</property>
+            <property name="Y">71</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label4">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Last Name</property>
+          </widget>
+          <packing>
+            <property name="X">29</property>
+            <property name="Y">130</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label5">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Donor</property>
+          </widget>
+          <packing>
+            <property name="X">29</property>
+            <property name="Y">195</property>
           </packing>
         </child>
       </widget>

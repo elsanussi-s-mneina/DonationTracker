@@ -1,5 +1,6 @@
 ﻿using System;
 using Gtk;
+using DonationTracker;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -12,5 +13,11 @@ public partial class MainWindow : Gtk.Window
     {
         Application.Quit();
         a.RetVal = true;
+    }
+
+    protected void AddDonorWindow(object sender, EventArgs e)
+    {
+        var window = new AddDonor();
+        window.Show();
     }
 }
