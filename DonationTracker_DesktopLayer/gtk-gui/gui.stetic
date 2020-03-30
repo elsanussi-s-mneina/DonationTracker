@@ -7,34 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/DonationTracker.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="525 374">
-    <action-group name="Default">
-      <action id="dfdAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">dfd</property>
-        <property name="ShortLabel" translatable="yes">dfd</property>
-      </action>
-      <action id="dfdgdfsAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">dfdgdfs</property>
-        <property name="ShortLabel" translatable="yes">dfdgdfs</property>
-      </action>
-      <action id="dsfsdfAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">dsfsdf</property>
-        <property name="ShortLabel" translatable="yes">dsfsdf</property>
-      </action>
-      <action id="dfdAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">dfd</property>
-        <property name="ShortLabel" translatable="yes">dfd</property>
-      </action>
-      <action id="abdcAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">abdc</property>
-        <property name="ShortLabel" translatable="yes">abdc</property>
-      </action>
-    </action-group>
+  <widget class="Gtk.Window" id="MainWindow" design-size="874 374">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Donor Tracker</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -62,25 +35,11 @@
           <placeholder />
         </child>
         <child>
-          <widget class="Gtk.Button" id="button2">
-            <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">Start Adding Donors</property>
-            <property name="UseUnderline">True</property>
-            <signal name="Clicked" handler="ShowDonorAdditionWindow" />
-          </widget>
-          <packing>
-            <property name="X">206</property>
-            <property name="Y">34</property>
-          </packing>
-        </child>
-        <child>
           <widget class="Gtk.Button" id="ShowTableButton">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">Show Donors</property>
+            <property name="Label" translatable="yes">Show Donations</property>
             <property name="UseUnderline">True</property>
             <signal name="Clicked" handler="OnShowTableButtonClicked" />
           </widget>
@@ -137,6 +96,43 @@
           <packing>
             <property name="X">53</property>
             <property name="Y">148</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">The purpose of this program is to keep track of monetary donations, and who gave them. The target use case is for non-profit organizations.</property>
+            <property name="Wrap">True</property>
+          </widget>
+          <packing>
+            <property name="X">130</property>
+            <property name="Y">30</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button2">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Add Donations</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="ShowDonorAdditionWindow" />
+          </widget>
+          <packing>
+            <property name="X">397</property>
+            <property name="Y">141</property>
           </packing>
         </child>
       </widget>
