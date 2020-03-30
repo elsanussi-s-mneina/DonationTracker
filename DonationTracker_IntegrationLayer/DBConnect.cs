@@ -6,12 +6,11 @@ namespace DonationTracker.Integration
 {
     public class DBConnect
     {
-        // Most of the code here is copied from the following
-        // Article:
+        // The following article is a useful tutorial to help understand
+        // this code:
         // https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
-        // I will change it, and make it work for our case.
-        // So far it does successfully connect to the database and insert
-        // rows into the table.
+        // Some of the code here is patterned after the code in the tutorial.
+
         private MySqlConnection connection;
         private string server;
         private string database;
@@ -33,9 +32,6 @@ namespace DonationTracker.Integration
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
-            // Server = myServerAddress; Port = 1234; Database = myDataBase; Uid = myUsername; Pwd = myPassword;
-
-
             connection = new MySqlConnection(connectionString);
 
         }
@@ -43,11 +39,10 @@ namespace DonationTracker.Integration
         internal decimal CalculateTotalDonationAmount()
         {
             decimal total = 0;
-            if (this.OpenConnection() == true)
+            if (OpenConnection())
             {
                 MySqlCommand command = new MySqlCommand();
 
-                // Fill SQL command parameters.
                 command.Connection = connection;
 
                 command.CommandType = System.Data.CommandType.Text;
@@ -56,13 +51,11 @@ namespace DonationTracker.Integration
 
 
                 MySqlDataReader dataReader = command.ExecuteReader();
-                // Read data and show to the console
 
                 dataReader.Read();
                 total = dataReader.GetDecimal(0);
 
-                //close connection
-                this.CloseConnection();
+                CloseConnection();
             }
 
             return total;
@@ -73,12 +66,10 @@ namespace DonationTracker.Integration
 
             IList<DonorDonation> donorDonations = new List<DonorDonation>();
 
-            //open connection
-            if (this.OpenConnection() == true)
+            if (OpenConnection())
             {
                 MySqlCommand command = new MySqlCommand();
 
-                // Fill SQL command parameters.
                 command.Connection = connection;
 
                 command.CommandType = System.Data.CommandType.Text;
@@ -87,10 +78,6 @@ namespace DonationTracker.Integration
 
 
                 MySqlDataReader dataReader = command.ExecuteReader();
-                // Read data and show to the console.
-
-                // Read data and show to the console
-
 
                 while (dataReader.Read())
                 {
@@ -103,8 +90,7 @@ namespace DonationTracker.Integration
                     donorDonations.Add(donorDonation);
                 }
 
-                //close connection
-                this.CloseConnection();
+                CloseConnection();
             }
 
             return donorDonations;
@@ -120,11 +106,10 @@ namespace DonationTracker.Integration
             }
             catch (MySqlException ex)
             {
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
+                // See the following documentation for understanding of
+                // MySQL server error codes.
+                // https://dev.mysql.com/doc/refman/8.0/en/global-error-reference.html
+
                 switch (ex.Number)
                 {
                     case 0:
@@ -140,7 +125,6 @@ namespace DonationTracker.Integration
 
         }
 
-        //Close connection
         private bool CloseConnection()
         {
             try
@@ -155,19 +139,17 @@ namespace DonationTracker.Integration
             }
         }
 
-        //Insert statement
         public void Insert(DonorDonation donation)
         {
-            //open connection
-            if (this.OpenConnection() == true)
+            if (OpenConnection())
             {
                 MySqlCommand insertCommand = new MySqlCommand();
 
-                // Fill SQL command parameters.
                 insertCommand.Connection = connection;
 
                 insertCommand.CommandType = System.Data.CommandType.Text;
-                insertCommand.CommandText = "INSERT INTO donorDonations (firstName, lastName, donationAmount) VALUES(@firstName, @lastName, @donationAmount)";
+                insertCommand.CommandText =
+                    "INSERT INTO donorDonations (firstName, lastName, donationAmount) VALUES(@firstName, @lastName, @donationAmount)";
 
                 var firstNameParam = new MySqlParameter("@firstName", donation.FirstName);
                 firstNameParam.DbType = System.Data.DbType.String;
@@ -181,11 +163,9 @@ namespace DonationTracker.Integration
                 donationAmountParam.DbType = System.Data.DbType.Decimal;
                 insertCommand.Parameters.Add(donationAmountParam);
 
-                //Execute command
                 insertCommand.ExecuteNonQuery();
 
-                //close connection
-                this.CloseConnection();
+                CloseConnection();
             }
         }
 
