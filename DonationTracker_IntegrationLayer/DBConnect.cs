@@ -121,7 +121,7 @@ namespace DonationTracker.Integration
                     int id = dataReader.GetInt32(0);
                     donorDonation.FirstName = dataReader.GetString(1);
                     donorDonation.LastName = dataReader.GetString(2);
-                    donorDonation.TotalDonationAmount = dataReader.GetDecimal(0);
+                    donorDonation.TotalDonationAmount = dataReader.GetDecimal(3);
 
                     donorDonations.Add(donorDonation);
                 }
