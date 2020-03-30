@@ -1,5 +1,4 @@
-﻿using System;
-using DonationTracker.Service;
+﻿using DonationTracker.Service;
 
 namespace DonationTracker.Desktop
 {

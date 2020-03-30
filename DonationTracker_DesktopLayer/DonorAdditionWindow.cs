@@ -1,5 +1,4 @@
 ﻿using System;
-using DonationTracker.Desktop.Model;
 using DonationTracker.Service;
 using Gtk;
 
