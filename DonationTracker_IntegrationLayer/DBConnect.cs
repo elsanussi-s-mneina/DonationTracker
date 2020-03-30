@@ -57,10 +57,12 @@ namespace DonationTracker.Integration
                 {
                     case 0:
                         Console.WriteLine("Cannot connect to server.  Contact administrator");
+                        throw new IntegrationLayerException(ex);
                         break;
 
                     case 1045:
                         Console.WriteLine("Invalid username/password, please try again");
+                        throw new IntegrationLayerException(ex);
                         break;
                 }
                 return false;

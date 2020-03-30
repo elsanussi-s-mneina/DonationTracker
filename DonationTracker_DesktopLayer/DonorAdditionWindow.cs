@@ -1,5 +1,6 @@
 ﻿using System;
 using DonationTracker.Desktop.Model;
+using DonationTracker.Service;
 using Gtk;
 
 namespace DonationTracker.Desktop
@@ -47,7 +48,7 @@ namespace DonationTracker.Desktop
                 return;
             }
 
-            var donorDonation = new DonorDonation();
+            var donorDonation = new Model.DonorDonation();
 
             decimal conversionResult;
 
@@ -57,11 +58,24 @@ namespace DonationTracker.Desktop
             if (decimal.TryParse(AmountTextBox.Text, out conversionResult))
             {
                 donorDonation.DonationAmount = conversionResult;
-                operations.AddDonor(donorDonation);
+                try
+                {
+                    operations.AddDonor(donorDonation);
+                    FirstNameTextBox.Text = string.Empty;
+                    LastNameTextBox.Text = string.Empty;
+                    AmountTextBox.Text = string.Empty;
+                }
+                catch (ServiceLayerException exception)
+                {
+                    InformUserOfError("Sorry that did not work, something is wrong.");
+                    Console.WriteLine(exception);
+                }
+                catch (Exception exception)
+                {
+                    InformUserOfError("Sorry that did not work, something is wrong. (2)");
+                    Console.WriteLine(exception);
+                }
 
-                FirstNameTextBox.Text = string.Empty;
-                LastNameTextBox.Text = string.Empty;
-                AmountTextBox.Text = string.Empty;
             }
             else
             {
@@ -71,6 +85,15 @@ namespace DonationTracker.Desktop
         }
 
         private void WarnUser(string message)
+        {
+            MessageDialog md = new MessageDialog(this,
+                DialogFlags.DestroyWithParent, MessageType.Warning,
+                ButtonsType.Close, message);
+            md.Run();
+            md.Destroy();
+        }
+
+        private void InformUserOfError(string message)
         {
             MessageDialog md = new MessageDialog(this,
                 DialogFlags.DestroyWithParent, MessageType.Error,
