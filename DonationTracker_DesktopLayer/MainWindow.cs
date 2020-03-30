@@ -27,6 +27,7 @@ public partial class MainWindow : Gtk.Window
     {
         var donorDonations = operations.ReadAllDonors();
 
+        ClearTable();
         Label firstNameLabel = new Label();
         firstNameLabel.UseMarkup = true;
         firstNameLabel.Markup = @"<span foreground='black' size='x-large'> <b>First Name</b></span>";
@@ -71,10 +72,23 @@ public partial class MainWindow : Gtk.Window
         
     }
 
+    /// <summary>
+    /// Clear the table so that text does not overlap, and
+    /// become unreadable.
+    /// </summary>
+    public void ClearTable()
+    {
+        foreach (var widget in DonorsTableView.Children)
+        {
+            DonorsTableView.Remove(widget);
+        }
+    }
+
     protected void CalculatePerDonorTotals(object sender, EventArgs e)
     {
         var donorDonations = operations.CalculatePerDonorTotalDonationAmount();
 
+        ClearTable();
         Label firstNameLabel = new Label();
         firstNameLabel.UseMarkup = true;
         firstNameLabel.Markup = @"<span foreground='black' size='x-large'> <b>First Name</b></span>";
