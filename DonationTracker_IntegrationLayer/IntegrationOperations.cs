@@ -3,8 +3,11 @@ namespace DonationTracker.Integration
 {
     public class IntegrationOperations
     {
+        DBConnect databaseBridge;
+
         public IntegrationOperations()
         {
+            databaseBridge = new DBConnect();
         }
 
         public void AddDonor(DonorDonation donation)
@@ -16,6 +19,9 @@ namespace DonationTracker.Integration
             Console.WriteLine("Amount: " + donation.DonationAmount);
 
             Console.WriteLine("Persistance of data has not been implemented yet!");
+
+            databaseBridge.Insert();
+
         }
     }
 }
