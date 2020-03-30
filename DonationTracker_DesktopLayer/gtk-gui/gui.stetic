@@ -135,6 +135,29 @@
             <property name="Y">141</property>
           </packing>
         </child>
+        <child>
+          <widget class="Gtk.Button" id="TotalAmountCalculationButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Calculate Total Donation Amount</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="CalculateTotalDonationAmount" />
+          </widget>
+          <packing>
+            <property name="X">396</property>
+            <property name="Y">265</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="TotalDonationAmountLabel">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="X">434</property>
+            <property name="Y">313</property>
+          </packing>
+        </child>
       </widget>
     </child>
   </widget>

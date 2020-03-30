@@ -52,5 +52,12 @@ namespace DonationTracker.Service
 
             return donorDonations;
         }
+
+        public decimal CalculateTotalDonationAmount()
+        {
+            decimal total = operations.CalculateTotalDonationAmount();
+
+            return total;
+        }
     }
 }

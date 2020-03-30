@@ -27,7 +27,7 @@ public partial class MainWindow : Gtk.Window
     {
         var donorDonations = operations.ReadAllDonors();
 
-        Label firstNameLabel = new Label();  // "First Name");
+        Label firstNameLabel = new Label();
         firstNameLabel.UseMarkup = true;
         firstNameLabel.Markup = @"<span foreground='black' size='x-large'> <b>First Name</b></span>";
         Label lastNameLabel = new Label("Last Name");
@@ -60,5 +60,14 @@ public partial class MainWindow : Gtk.Window
         }
 
         ShowAll();
+    }
+
+    protected void CalculateTotalDonationAmount(object sender, EventArgs e)
+    {
+        decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
+
+        TotalDonationAmountLabel.Text = "Total: " + totalDonationAmount.ToString();
+
+        
     }
 }

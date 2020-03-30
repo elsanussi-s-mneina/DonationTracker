@@ -29,5 +29,10 @@ namespace DonationTracker.Integration
         {
             return databaseBridge.ReadAllDonors();
         }
+
+        public decimal CalculateTotalDonationAmount()
+        {
+            return databaseBridge.CalculateTotalDonationAmount();
+        }
     }
 }

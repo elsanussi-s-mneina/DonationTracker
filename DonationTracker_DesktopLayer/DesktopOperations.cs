@@ -46,5 +46,12 @@ namespace DonationTracker.Desktop
 
             return donorDonations2;
         }
+
+        public decimal CalculateTotalDonationAmount()
+        {
+            decimal total = donationService.CalculateTotalDonationAmount();
+
+            return total;
+        }
     }
 }

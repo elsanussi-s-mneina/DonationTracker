@@ -40,6 +40,34 @@ namespace DonationTracker.Integration
 
         }
 
+        internal decimal CalculateTotalDonationAmount()
+        {
+            decimal total = 0;
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                // Fill SQL command parameters.
+                command.Connection = connection;
+
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText =
+                    "SELECT SUM(donationAmount) FROM donorDonations;";
+
+
+                MySqlDataReader dataReader = command.ExecuteReader();
+                // Read data and show to the console
+
+                dataReader.Read();
+                total = dataReader.GetDecimal(0);
+
+                //close connection
+                this.CloseConnection();
+            }
+
+            return total;
+        }
+
         internal IList<DonorDonation> ReadAllDonors()
         {
 
