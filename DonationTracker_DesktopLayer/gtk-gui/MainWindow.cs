@@ -19,6 +19,10 @@ public partial class MainWindow
 
 	private global::Gtk.Button button2;
 
+	private global::Gtk.Button ShowTableButton;
+
+	private global::Gtk.Table DonorsTableView;
+
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
@@ -59,15 +63,36 @@ public partial class MainWindow
 		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.button2]));
 		w2.X = 206;
 		w2.Y = 34;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.ShowTableButton = new global::Gtk.Button();
+		this.ShowTableButton.CanFocus = true;
+		this.ShowTableButton.Name = "ShowTableButton";
+		this.ShowTableButton.UseUnderline = true;
+		this.ShowTableButton.Label = global::Mono.Unix.Catalog.GetString("Show Donors");
+		this.fixed1.Add(this.ShowTableButton);
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.ShowTableButton]));
+		w3.X = 389;
+		w3.Y = 179;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.DonorsTableView = new global::Gtk.Table(((uint)(4)), ((uint)(3)), false);
+		this.DonorsTableView.Name = "DonorsTableView";
+		this.DonorsTableView.RowSpacing = ((uint)(6));
+		this.DonorsTableView.ColumnSpacing = ((uint)(6));
+		this.DonorsTableView.BorderWidth = ((uint)(3));
+		this.fixed1.Add(this.DonorsTableView);
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.DonorsTableView]));
+		w4.X = 53;
+		w4.Y = 148;
 		this.Add(this.fixed1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 499;
-		this.DefaultHeight = 125;
+		this.DefaultWidth = 525;
+		this.DefaultHeight = 374;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.button2.Clicked += new global::System.EventHandler(this.ShowDonorAdditionWindow);
+		this.ShowTableButton.Clicked += new global::System.EventHandler(this.OnShowTableButtonClicked);
 	}
 }

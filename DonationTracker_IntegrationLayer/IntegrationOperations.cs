@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace DonationTracker.Integration
 {
     public class IntegrationOperations
@@ -21,6 +23,11 @@ namespace DonationTracker.Integration
             Console.WriteLine("Writing record to database...");
             databaseBridge.Insert(donation);
 
+        }
+
+        public IList<DonorDonation> ReadAllDonors()
+        {
+            return databaseBridge.ReadAllDonors();
         }
     }
 }

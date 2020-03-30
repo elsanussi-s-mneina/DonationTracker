@@ -1,4 +1,6 @@
-﻿using DonationTracker.Service;
+﻿using System;
+using System.Collections.Generic;
+using DonationTracker.Service;
 
 namespace DonationTracker.Desktop
 {
@@ -21,6 +23,28 @@ namespace DonationTracker.Desktop
             };
 
             donationService.AddDonor(sDonation);
+        }
+
+        public IList<Desktop.Model.DonorDonation> ReadAllDonors()
+        {
+            var donorDonations1 = donationService.ReadAllDonors();
+
+            IList<Desktop.Model.DonorDonation> donorDonations2 =
+                new List<Desktop.Model.DonorDonation>();
+
+            foreach (DonorDonation d in donorDonations1)
+            {
+                Desktop.Model.DonorDonation d2 = new Model.DonorDonation
+                {
+                    FirstName = d.FirstName,
+                    LastName = d.LastName,
+                    DonationAmount = d.DonationAmount
+                };
+
+                donorDonations2.Add(d2);
+            }
+
+            return donorDonations2;
         }
     }
 }

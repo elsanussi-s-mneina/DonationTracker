@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
 namespace DonationTracker.Integration
@@ -36,6 +37,49 @@ namespace DonationTracker.Integration
 
 
             connection = new MySqlConnection(connectionString);
+
+        }
+
+        internal IList<DonorDonation> ReadAllDonors()
+        {
+
+            IList<DonorDonation> donorDonations = new List<DonorDonation>();
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                // Fill SQL command parameters.
+                command.Connection = connection;
+
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText =
+                    "SELECT id, firstName, lastName, donationAmount FROM donorDonations;";
+
+
+                MySqlDataReader dataReader = command.ExecuteReader();
+                // Read data and show to the console.
+
+                // Read data and show to the console
+
+
+                while (dataReader.Read())
+                {
+                    var donorDonation = new DonorDonation();
+                    int id = dataReader.GetInt32(0);
+                    donorDonation.FirstName = dataReader.GetString(1);
+                    donorDonation.LastName = dataReader.GetString(2);
+                    donorDonation.DonationAmount = dataReader.GetDecimal(3);
+
+                    donorDonations.Add(donorDonation);
+                }
+
+                //close connection
+                this.CloseConnection();
+            }
+
+            return donorDonations;
 
         }
 

@@ -9,9 +9,6 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
-
-
-
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -26,6 +23,42 @@ public partial class MainWindow : Gtk.Window
         window.Show();
     }
 
+    protected void OnShowTableButtonClicked(object sender, EventArgs e)
+    {
+        var donorDonations = operations.ReadAllDonors();
+
+        Label firstNameLabel = new Label();  // "First Name");
+        firstNameLabel.UseMarkup = true;
+        firstNameLabel.Markup = @"<span foreground='black' size='x-large'> <b>First Name</b></span>";
+        Label lastNameLabel = new Label("Last Name");
+        lastNameLabel.UseMarkup = true;
+        lastNameLabel.Markup = @"<span foreground='black' size='x-large'> <b>Last Name</b></span>";
+
+        Label amountLabel = new Label("Amount");
+        amountLabel.UseMarkup = true;
+        amountLabel.Markup = @"<span foreground='black' size='x-large'> <b>Amount</b></span>";
+
+        uint i = 0;
+
+        DonorsTableView.Attach(firstNameLabel, 0, 1, i, i + 1);
+        DonorsTableView.Attach(lastNameLabel, 1, 2, i, i + 1);
+        DonorsTableView.Attach(amountLabel, 2, 3, i, i + 1);
+
+        i++;
+        foreach (var d in donorDonations)
+        {
+            Label firstName1 = new Label(d.FirstName);
+            Label lastName1 = new Label(d.LastName);
+            Label amount1 = new Label(d.DonationAmount.ToString());
 
 
+            DonorsTableView.Attach(firstName1, 0, 1, i, i + 1);
+            DonorsTableView.Attach(lastName1, 1, 2, i, i + 1);
+            DonorsTableView.Attach(amount1, 2, 3, i, i + 1);
+
+            i++;
+        }
+
+        ShowAll();
+    }
 }
