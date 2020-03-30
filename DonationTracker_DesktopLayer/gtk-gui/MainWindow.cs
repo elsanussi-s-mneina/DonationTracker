@@ -17,6 +17,8 @@ public partial class MainWindow
 
 	private global::Gtk.Label TotalDonationAmountLabel;
 
+	private global::Gtk.Button PerDonorTotalButton;
+
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
@@ -85,6 +87,16 @@ public partial class MainWindow
 		global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.TotalDonationAmountLabel]));
 		w6.X = 434;
 		w6.Y = 313;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.PerDonorTotalButton = new global::Gtk.Button();
+		this.PerDonorTotalButton.CanFocus = true;
+		this.PerDonorTotalButton.Name = "PerDonorTotalButton";
+		this.PerDonorTotalButton.UseUnderline = true;
+		this.PerDonorTotalButton.Label = global::Mono.Unix.Catalog.GetString("Calculate Per Donor Total Donation Amount");
+		this.fixed1.Add(this.PerDonorTotalButton);
+		global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.PerDonorTotalButton]));
+		w7.X = 394;
+		w7.Y = 231;
 		this.Add(this.fixed1);
 		if ((this.Child != null))
 		{
@@ -97,5 +109,6 @@ public partial class MainWindow
 		this.ShowTableButton.Clicked += new global::System.EventHandler(this.OnShowTableButtonClicked);
 		this.button2.Clicked += new global::System.EventHandler(this.ShowDonorAdditionWindow);
 		this.TotalAmountCalculationButton.Clicked += new global::System.EventHandler(this.CalculateTotalDonationAmount);
+		this.PerDonorTotalButton.Clicked += new global::System.EventHandler(this.CalculatePerDonorTotals);
 	}
 }

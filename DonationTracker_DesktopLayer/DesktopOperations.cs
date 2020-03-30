@@ -47,11 +47,36 @@ namespace DonationTracker.Desktop
             return donorDonations2;
         }
 
+
+        public IList<Desktop.Model.DonorDonationTotalByDonor>
+            CalculatePerDonorTotalDonationAmount()
+        {
+            var donorDonations1 = donationService.CalculatePerDonorTotalDonationAmount();
+
+            IList<Desktop.Model.DonorDonationTotalByDonor> donorDonations2 =
+                new List<Desktop.Model.DonorDonationTotalByDonor>();
+
+            foreach (DonorDonationTotalByDonor d in donorDonations1)
+            {
+                Desktop.Model.DonorDonationTotalByDonor d2 = new Model.DonorDonationTotalByDonor
+                {
+                    FirstName = d.FirstName,
+                    LastName = d.LastName,
+                    TotalDonationAmount = d.TotalDonationAmount
+                };
+
+                donorDonations2.Add(d2);
+            }
+
+            return donorDonations2;
+        }
+
         public decimal CalculateTotalDonationAmount()
         {
             decimal total = donationService.CalculateTotalDonationAmount();
 
             return total;
         }
+
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="Model\DonorDonation.cs" />
     <Compile Include="DesktopOperations.cs" />
     <Compile Include="gtk-gui\DonationTracker.Desktop.DonorAdditionWindow.cs" />
+    <Compile Include="Model\DonorDonationTotalByDonor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DonationTracker_ServiceLayer\DonationTracker.Service.csproj">

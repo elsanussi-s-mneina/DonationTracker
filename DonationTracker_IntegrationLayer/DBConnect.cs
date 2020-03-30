@@ -97,6 +97,44 @@ namespace DonationTracker.Integration
 
         }
 
+
+        public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
+        {
+            IList<DonorDonationTotalByDonor> donorDonations = new List<DonorDonationTotalByDonor>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = connection;
+
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText =
+                    "SELECT id, firstName, lastName, SUM(donationAmount) FROM donorDonations GROUP BY id;";
+
+
+                MySqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    var donorDonation = new DonorDonationTotalByDonor();
+                    int id = dataReader.GetInt32(0);
+                    donorDonation.FirstName = dataReader.GetString(1);
+                    donorDonation.LastName = dataReader.GetString(2);
+                    donorDonation.TotalDonationAmount = dataReader.GetDecimal(0);
+
+                    donorDonations.Add(donorDonation);
+                }
+
+                CloseConnection();
+            }
+
+            return donorDonations;
+
+        }
+
+
+
         private bool OpenConnection()
         {
             try

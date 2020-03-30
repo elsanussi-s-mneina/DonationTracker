@@ -53,6 +53,26 @@ namespace DonationTracker.Service
             return donorDonations;
         }
 
+        public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
+        {
+            IList<DonorDonationTotalByDonor> donorDonations = new List<DonorDonationTotalByDonor>();
+
+            IList<Integration.DonorDonationTotalByDonor> donorDonations2 =
+                operations.CalculatePerDonorTotalDonationAmount();
+
+            foreach (var donorDonation in donorDonations2)
+            {
+                var current = new DonorDonationTotalByDonor();
+                current.FirstName = donorDonation.FirstName;
+                current.LastName = donorDonation.LastName;
+                current.TotalDonationAmount = donorDonation.TotalDonationAmount;
+
+                donorDonations.Add(current);
+            }
+
+            return donorDonations;
+        }
+
         public decimal CalculateTotalDonationAmount()
         {
             decimal total = operations.CalculateTotalDonationAmount();

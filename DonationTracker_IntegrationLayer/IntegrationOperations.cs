@@ -34,5 +34,10 @@ namespace DonationTracker.Integration
         {
             return databaseBridge.CalculateTotalDonationAmount();
         }
+
+        public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
+        {
+            return databaseBridge.CalculatePerDonorTotalDonationAmount();
+        }
     }
 }

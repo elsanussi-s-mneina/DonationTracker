@@ -61,6 +61,7 @@
     <Compile Include="Model\DonorDonation.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="IntegrationLayerException.cs" />
+    <Compile Include="Model\DonorDonationTotalByDonor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
