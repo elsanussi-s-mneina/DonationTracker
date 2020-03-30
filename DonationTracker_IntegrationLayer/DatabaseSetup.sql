@@ -4,11 +4,12 @@
 create database DonationTracking;
 use DonationTracking;
 
-create table tableInfo
+create table donorDonations
 (
   id INT NOT NULL auto_increment,
-  name VARCHAR(30),
-  age INT,
+  firstName VARCHAR(30),
+  lastName  VARCHAR(30),
+  donationAmount DECIMAL,
   PRIMARY KEY(id)
 );
 
@@ -19,7 +20,7 @@ GRANT ALL PRIVILEGES ON DonationTracking.* TO 'donationTrackerUser'@'localhost';
 
 -- Convenience statements for checking that it worked:
 
--- SELECT * FROM tableinfo;
+-- SELECT * FROM donorDonations;
 
 -- SELECT User,Host FROM mysql.user;
 -- SHOW GRANTS FOR 'donationTrackerUser'@'localhost';

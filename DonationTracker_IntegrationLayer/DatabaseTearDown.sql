@@ -1,6 +1,6 @@
 ﻿-- An SQL script that undoes what the DatabaseSetup.sql did.
 
-DROP TABLE tableInfo;
+DROP TABLE donorDonations;
 DROP DATABASE DonationTracking;
 DROP USER 'donationTrackerUser'@'localhost';
 

@@ -18,9 +18,8 @@ namespace DonationTracker.Integration
             Console.WriteLine("Last Name: " + donation.LastName);
             Console.WriteLine("Amount: " + donation.DonationAmount);
 
-            Console.WriteLine("Persistance of data has not been implemented yet!");
-
-            databaseBridge.Insert();
+            Console.WriteLine("Writing record to database...");
+            databaseBridge.Insert(donation);
 
         }
     }

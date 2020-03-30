@@ -1,12 +1,16 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using MySql.Data.MySqlClient;
 
 namespace DonationTracker.Integration
 {
     public class DBConnect
     {
+        // Most of the code here is copied from the following
+        // Article:
+        // https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
+        // I will change it, and make it work for our case.
+        // So far it does successfully connect to the database and insert
+        // rows into the table.
         private MySqlConnection connection;
         private string server;
         private string database;
@@ -80,129 +84,39 @@ namespace DonationTracker.Integration
         }
 
         //Insert statement
-        public void Insert()
+        public void Insert(DonorDonation donation)
         {
-            string query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
-
             //open connection
             if (this.OpenConnection() == true)
             {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlCommand insertCommand = new MySqlCommand();
+
+                // Fill SQL command parameters.
+                insertCommand.Connection = connection;
+
+                insertCommand.CommandType = System.Data.CommandType.Text;
+                insertCommand.CommandText = "INSERT INTO donorDonations (firstName, lastName, donationAmount) VALUES(@firstName, @lastName, @donationAmount)";
+
+                var firstNameParam = new MySqlParameter("@firstName", donation.FirstName);
+                firstNameParam.DbType = System.Data.DbType.String;
+                insertCommand.Parameters.Add(firstNameParam);
+
+                var lastNameParam = new MySqlParameter("@lastName", donation.LastName);
+                lastNameParam.DbType = System.Data.DbType.String;
+                insertCommand.Parameters.Add(lastNameParam);
+
+                var donationAmountParam = new MySqlParameter("@donationAmount", donation.DonationAmount);
+                donationAmountParam.DbType = System.Data.DbType.Decimal;
+                insertCommand.Parameters.Add(donationAmountParam);
 
                 //Execute command
-                cmd.ExecuteNonQuery();
+                insertCommand.ExecuteNonQuery();
 
                 //close connection
                 this.CloseConnection();
             }
         }
 
-        //Update statement
-        public void Update()
-        {
-            string query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
 
-            //open connection
-            if (this.OpenConnection() == true)
-            {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //Execute command
-                cmd.ExecuteNonQuery();
-
-                //close connection
-                this.CloseConnection();
-            }
-        }
-
-        //Delete statement
-        public void Delete()
-        {
-            string query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
-
-            //open connection
-            if (this.OpenConnection() == true)
-            {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //Execute command
-                cmd.ExecuteNonQuery();
-
-                //close connection
-                this.CloseConnection();
-            }
-        }
-
-        //Select statement
-        public List<string>[] Select()
-        {
-            string query = "SELECT * FROM tableinfo";
-
-            //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
-
-            //Open connection
-            if (this.OpenConnection() == true)
-            {
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                //Read the data and store them in the list
-                while (dataReader.Read())
-                {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["name"] + "");
-                    list[2].Add(dataReader["age"] + "");
-                }
-
-                //close Data Reader
-                dataReader.Close();
-
-                //close Connection
-                this.CloseConnection();
-
-                //return list to be displayed
-                return list;
-            }
-            else
-            {
-                return list;
-            }
-        }
-
-
-        //Count statement
-        public int Count()
-        {
-            string query = "SELECT Count(*) FROM tableinfo";
-            int Count = -1;
-
-            //Open Connection
-            if (this.OpenConnection() == true)
-            {
-                //Create Mysql Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //ExecuteScalar will return one value
-                Count = int.Parse(cmd.ExecuteScalar() + "");
-
-                //close Connection
-                this.CloseConnection();
-
-                return Count;
-            }
-            else
-            {
-                return Count;
-            }
-        }
     }
 }
