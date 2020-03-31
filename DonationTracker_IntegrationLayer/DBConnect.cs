@@ -217,11 +217,11 @@ namespace DonationTracker.Integration
                 insertCommand.CommandText =
                     "INSERT INTO donor (first_name, last_name) VALUES(@first_name, @last_name) RETURNING id";
 
-                var firstNameParam = new NpgsqlParameter("@first_name", donation.FirstName);
+                var firstNameParam = new NpgsqlParameter("@first_name", donation.FirstName.Trim());
                 firstNameParam.DbType = System.Data.DbType.String;
                 insertCommand.Parameters.Add(firstNameParam);
 
-                var lastNameParam = new NpgsqlParameter("@last_name", donation.LastName);
+                var lastNameParam = new NpgsqlParameter("@last_name", donation.LastName.Trim());
                 lastNameParam.DbType = System.Data.DbType.String;
                 insertCommand.Parameters.Add(lastNameParam);
 
