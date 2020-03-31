@@ -17,4 +17,10 @@ I had to reference the Integration layer from the desktop layer, just so
 that the DLL file would be copied over (I have not determined how to get
 Visual Studio to copy over transitive dependencies).
 
-The application uses MySQL as a database, and does not use an ORM.
+The application uses PostgreSQL (version 12.1) as a relational database management system, and does not use an ORM.
+
+
+
+
+some-computer:~some-username:  psql --version
+psql (PostgreSQL) 12.1

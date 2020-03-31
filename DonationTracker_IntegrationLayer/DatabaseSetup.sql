@@ -1,29 +1,43 @@
-﻿-- A MySQL script for creating the database, the table,
+﻿-- A PostgreSQL script for creating the database, the table,
 -- and the user.
 
-create database DonationTracking;
-use DonationTracking;
 
-create table donorDonations
+-- From postgresql database, run the following two statements.
+CREATE USER donation_tracker_user WITH PASSWORD 'secret1secret';
+
+
+CREATE DATABASE donation_tracking WITH OWNER donation_tracker_user ENCODING='UTF-8' LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8';
+
+GRANT ALL PRIVILEGES ON DATABASE donation_tracking TO donation_tracker_user;
+
+
+-- quit the psql shell, by entering
+-- \q
+
+
+
+
+---------------- Run the following in the database we just created ------------
+
+-- Now log into the donation_tracking database using the following command:
+-- (must be all lowercase)
+-- psql donation_tracking
+
+create table donor_donations
 (
-  id INT NOT NULL auto_increment,
-  firstName VARCHAR(30),
-  lastName  VARCHAR(30),
-  donationAmount DECIMAL,
+  id SERIAL,
+  first_name VARCHAR(30),
+  last_name  VARCHAR(30),
+  donation_amount DECIMAL,
   PRIMARY KEY(id)
 );
 
 
-CREATE USER 'donationTrackerUser'@'localhost' IDENTIFIED BY 'secret1secret';
-GRANT ALL PRIVILEGES ON DonationTracking.* TO 'donationTrackerUser'@'localhost';
 
+-- inside the DonationTracking database:
 
--- Convenience statements for checking that it worked:
+GRANT ALL PRIVILEGES ON TABLE donor_donations TO donation_tracker_user;
 
--- SELECT * FROM donorDonations;
-
--- SELECT User,Host FROM mysql.user;
--- SHOW GRANTS FOR 'donationTrackerUser'@'localhost';
-
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO donation_tracker_user;
 
 

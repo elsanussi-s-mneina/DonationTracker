@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using Npgsql;
 
 namespace DonationTracker.Integration
 {
@@ -11,7 +11,7 @@ namespace DonationTracker.Integration
         // https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
         // Some of the code here is patterned after the code in the tutorial.
 
-        private MySqlConnection connection;
+        private NpgsqlConnection connection;
         private string server;
         private string database;
         private string uid;
@@ -25,14 +25,14 @@ namespace DonationTracker.Integration
         public void Initialize()
         {
             server = "localhost";
-            database = "DonationTracking";
-            uid = "donationTrackerUser";
+            database = "donation_tracking";
+            uid = "donation_tracker_user";
             password = "secret1secret";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
-            connection = new MySqlConnection(connectionString);
+            connection = new NpgsqlConnection(connectionString);
 
         }
 
@@ -41,16 +41,16 @@ namespace DonationTracker.Integration
             decimal total = 0;
             if (OpenConnection())
             {
-                MySqlCommand command = new MySqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
                 command.Connection = connection;
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT SUM(donationAmount) FROM donorDonations;";
+                    "SELECT COALESCE(SUM(donation_amount),0) FROM donor_donations;";
 
 
-                MySqlDataReader dataReader = command.ExecuteReader();
+                NpgsqlDataReader dataReader = command.ExecuteReader();
 
                 dataReader.Read();
                 total = dataReader.GetDecimal(0);
@@ -68,16 +68,16 @@ namespace DonationTracker.Integration
 
             if (OpenConnection())
             {
-                MySqlCommand command = new MySqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
                 command.Connection = connection;
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT id, firstName, lastName, donationAmount FROM donorDonations;";
+                    "SELECT id, first_name, last_name, donation_amount FROM donor_donations;";
 
 
-                MySqlDataReader dataReader = command.ExecuteReader();
+                NpgsqlDataReader dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
                 {
@@ -104,16 +104,16 @@ namespace DonationTracker.Integration
 
             if (OpenConnection())
             {
-                MySqlCommand command = new MySqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
                 command.Connection = connection;
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT id, firstName, lastName, SUM(donationAmount) FROM donorDonations GROUP BY id;";
+                    "SELECT id, first_name, last_name, SUM(donation_amount) FROM donor_donations GROUP BY id;";
 
 
-                MySqlDataReader dataReader = command.ExecuteReader();
+                NpgsqlDataReader dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
                 {
@@ -142,23 +142,9 @@ namespace DonationTracker.Integration
                 connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (NpgsqlException ex)
             {
-                // See the following documentation for understanding of
-                // MySQL server error codes.
-                // https://dev.mysql.com/doc/refman/8.0/en/global-error-reference.html
-
-                switch (ex.Number)
-                {
-                    case 0:
-                        Console.WriteLine("Cannot connect to server.  Contact administrator");
-                        throw new IntegrationLayerException(ex);
-
-                    case 1045:
-                        Console.WriteLine("Invalid username/password, please try again");
-                        throw new IntegrationLayerException(ex);
-                }
-                return false;
+                throw new IntegrationLayerException(ex);
             }
 
         }
@@ -170,7 +156,7 @@ namespace DonationTracker.Integration
                 connection.Close();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (NpgsqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -181,23 +167,23 @@ namespace DonationTracker.Integration
         {
             if (OpenConnection())
             {
-                MySqlCommand insertCommand = new MySqlCommand();
+                NpgsqlCommand insertCommand = new NpgsqlCommand();
 
                 insertCommand.Connection = connection;
 
                 insertCommand.CommandType = System.Data.CommandType.Text;
                 insertCommand.CommandText =
-                    "INSERT INTO donorDonations (firstName, lastName, donationAmount) VALUES(@firstName, @lastName, @donationAmount)";
+                    "INSERT INTO donor_donations (first_name, last_name, donation_amount) VALUES(@first_name, @last_name, @donation_amount)";
 
-                var firstNameParam = new MySqlParameter("@firstName", donation.FirstName);
+                var firstNameParam = new NpgsqlParameter("@first_name", donation.FirstName);
                 firstNameParam.DbType = System.Data.DbType.String;
                 insertCommand.Parameters.Add(firstNameParam);
 
-                var lastNameParam = new MySqlParameter("@lastName", donation.LastName);
+                var lastNameParam = new NpgsqlParameter("@last_name", donation.LastName);
                 lastNameParam.DbType = System.Data.DbType.String;
                 insertCommand.Parameters.Add(lastNameParam);
 
-                var donationAmountParam = new MySqlParameter("@donationAmount", donation.DonationAmount);
+                var donationAmountParam = new NpgsqlParameter("@donation_amount", donation.DonationAmount);
                 donationAmountParam.DbType = System.Data.DbType.Decimal;
                 insertCommand.Parameters.Add(donationAmountParam);
 

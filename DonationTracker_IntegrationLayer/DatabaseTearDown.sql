@@ -1,13 +1,12 @@
 ﻿-- An SQL script that undoes what the DatabaseSetup.sql did.
 
-DROP TABLE donorDonations;
-DROP DATABASE DonationTracking;
-DROP USER 'donationTrackerUser'@'localhost';
+
+-- Run the following staement within donation_tracking database terminal:
+DROP TABLE donor_donations
 
 
 
--- Convenience statements for checking that it worked:
--- SELECT * FROM tableinfo;
+-- Switch to the postgresql database and run:
+DROP DATABASE donation_tracking;
+DROP USER donation_tracker_user;
 
--- SELECT User,Host FROM mysql.user;
--- SHOW GRANTS FOR 'donationTrackerUser'@'localhost';
