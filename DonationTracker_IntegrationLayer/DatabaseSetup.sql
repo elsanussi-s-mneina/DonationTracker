@@ -2,7 +2,7 @@
 -- and the user.
 
 
--- From postgresql database, run the following two statements.
+-- From postgres database, run the following two statements.
 CREATE USER donation_tracker_user WITH PASSWORD 'secret1secret';
 
 
@@ -32,9 +32,6 @@ create table donor_donations
   PRIMARY KEY(id)
 );
 
-
-
--- inside the DonationTracking database:
 
 GRANT ALL PRIVILEGES ON TABLE donor_donations TO donation_tracker_user;
 
