@@ -28,7 +28,7 @@ create table donor_donations
   id SERIAL,
   first_name VARCHAR(30),
   last_name  VARCHAR(30),
-  donation_amount DECIMAL,
+  donation_amount DECIMAL NOT NULL,
   PRIMARY KEY(id)
 );
 
