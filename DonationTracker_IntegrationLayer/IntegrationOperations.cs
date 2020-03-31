@@ -39,5 +39,10 @@ namespace DonationTracker.Integration
         {
             return databaseBridge.CalculatePerDonorTotalDonationAmount();
         }
+
+        public int? GetIDOfMatchingDonor(DonorQuery donorQuery2)
+        {
+            return databaseBridge.GetIDOfMatchingDonor(donorQuery2);
+        }
     }
 }

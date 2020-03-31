@@ -47,7 +47,7 @@ namespace DonationTracker.Integration
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT COALESCE(SUM(donation_amount),0) FROM donor_donations;";
+                    "SELECT COALESCE(SUM(donation_amount),0) FROM donation;";
 
 
                 NpgsqlDataReader dataReader = command.ExecuteReader();
@@ -59,6 +59,41 @@ namespace DonationTracker.Integration
             }
 
             return total;
+        }
+
+        internal int? GetIDOfMatchingDonor(DonorQuery donorQuery)
+        {
+            int? id = null;
+            if (OpenConnection())
+            {
+                NpgsqlCommand command = new NpgsqlCommand();
+
+                command.Connection = connection;
+
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText =
+                    "SELECT id FROM donor WHERE first_name = @first_name AND last_name = @last_name;";
+
+
+                var firstNameParam = new NpgsqlParameter("@first_name", donorQuery.FirstName);
+                firstNameParam.DbType = System.Data.DbType.String;
+                command.Parameters.Add(firstNameParam);
+
+                var lastNameParam = new NpgsqlParameter("@last_name", donorQuery.LastName);
+                lastNameParam.DbType = System.Data.DbType.String;
+                command.Parameters.Add(lastNameParam);
+
+                NpgsqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    id = dataReader.GetInt32(0);
+                }
+
+                CloseConnection();
+            }
+
+            return id;
         }
 
         internal IList<DonorDonation> ReadAllDonors()
@@ -74,7 +109,7 @@ namespace DonationTracker.Integration
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT id, first_name, last_name, donation_amount FROM donor_donations;";
+                    "SELECT donor.id, donor.first_name, donor.last_name, donation.donation_amount FROM donation INNER JOIN donor ON donation.donor_id = donor.id;";
 
 
                 NpgsqlDataReader dataReader = command.ExecuteReader();
@@ -110,7 +145,7 @@ namespace DonationTracker.Integration
 
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText =
-                    "SELECT id, first_name, last_name, SUM(donation_amount) FROM donor_donations GROUP BY id;";
+                    "SELECT donor.id, first_name, last_name, SUM(donation_amount) FROM donation INNER JOIN donor ON donation.donor_id = donor.id GROUP BY donor.id;";
 
 
                 NpgsqlDataReader dataReader = command.ExecuteReader();
@@ -165,7 +200,14 @@ namespace DonationTracker.Integration
 
         public void Insert(DonorDonation donation)
         {
-            if (OpenConnection())
+            int? id = GetIDOfMatchingDonor(
+                     new DonorQuery
+                       {
+                         FirstName = donation.FirstName,
+                         LastName = donation.LastName
+                       });
+      
+            if (id == null && OpenConnection())
             {
                 NpgsqlCommand insertCommand = new NpgsqlCommand();
 
@@ -173,7 +215,7 @@ namespace DonationTracker.Integration
 
                 insertCommand.CommandType = System.Data.CommandType.Text;
                 insertCommand.CommandText =
-                    "INSERT INTO donor_donations (first_name, last_name, donation_amount) VALUES(@first_name, @last_name, @donation_amount)";
+                    "INSERT INTO donor (first_name, last_name) VALUES(@first_name, @last_name) RETURNING id";
 
                 var firstNameParam = new NpgsqlParameter("@first_name", donation.FirstName);
                 firstNameParam.DbType = System.Data.DbType.String;
@@ -183,11 +225,32 @@ namespace DonationTracker.Integration
                 lastNameParam.DbType = System.Data.DbType.String;
                 insertCommand.Parameters.Add(lastNameParam);
 
+                Object result = insertCommand.ExecuteScalar();
+                id = (int)result;
+
+                CloseConnection();
+            }
+
+            if (id != null && OpenConnection())
+            {
+                NpgsqlCommand insertCommand2 = new NpgsqlCommand();
+
+                insertCommand2.Connection = connection;
+
+                insertCommand2.CommandType = System.Data.CommandType.Text;
+                insertCommand2.CommandText =
+                    "INSERT INTO donation (donor_id, donation_amount) VALUES(@donor_id, @donation_amount)";
+
+
+                var donorIDParam = new NpgsqlParameter("@donor_id", id);
+                donorIDParam.DbType = System.Data.DbType.Int32;
+                insertCommand2.Parameters.Add(donorIDParam);
+
                 var donationAmountParam = new NpgsqlParameter("@donation_amount", donation.DonationAmount);
                 donationAmountParam.DbType = System.Data.DbType.Decimal;
-                insertCommand.Parameters.Add(donationAmountParam);
+                insertCommand2.Parameters.Add(donationAmountParam);
 
-                insertCommand.ExecuteNonQuery();
+                insertCommand2.ExecuteNonQuery();
 
                 CloseConnection();
             }

@@ -73,6 +73,17 @@ namespace DonationTracker.Service
             return donorDonations;
         }
 
+        public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
+        {
+
+            var donorQuery2 = new Integration.DonorQuery();
+            donorQuery2.FirstName = donorQuery.FirstName;
+            donorQuery2.LastName = donorQuery.LastName;
+
+
+            return operations.GetIDOfMatchingDonor(donorQuery2);
+        }
+
         public decimal CalculateTotalDonationAmount()
         {
             decimal total = operations.CalculateTotalDonationAmount();

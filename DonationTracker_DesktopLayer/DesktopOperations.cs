@@ -77,5 +77,10 @@ namespace DonationTracker.Desktop
             return total;
         }
 
+        public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
+        {
+            return donationService.GetIDOfMatchingDonor(donorQuery);
+        }
+
     }
 }

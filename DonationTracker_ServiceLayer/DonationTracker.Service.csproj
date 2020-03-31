@@ -35,6 +35,7 @@
     <Compile Include="Model\DonorDonation.cs" />
     <Compile Include="ServiceLayerException.cs" />
     <Compile Include="Model\DonorDonationTotalByDonor.cs" />
+    <Compile Include="Model\DonorQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

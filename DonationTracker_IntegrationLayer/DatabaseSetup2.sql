@@ -6,17 +6,28 @@
 -- run the following command
 -- psql -f DatabaseSetup2.sql donation_tracking
 
-create table donor_donations
+
+create table donor
 (
   id SERIAL,
   first_name VARCHAR(30),
   last_name  VARCHAR(30),
-  donation_amount DECIMAL NOT NULL,
   PRIMARY KEY(id)
 );
 
 
-GRANT ALL PRIVILEGES ON TABLE donor_donations TO donation_tracker_user;
+create table donation
+(
+  id SERIAL,
+  donor_id SERIAL,
+  donation_amount DECIMAL NOT NULL,
+  PRIMARY KEY (donor_id, id),
+  FOREIGN KEY(donor_id) REFERENCES donor (id)
+);
+
+
+GRANT ALL PRIVILEGES ON TABLE donor TO donation_tracker_user;
+GRANT ALL PRIVILEGES ON TABLE donation TO donation_tracker_user;
 
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO donation_tracker_user;
 

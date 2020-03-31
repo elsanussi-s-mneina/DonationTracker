@@ -3,11 +3,12 @@
 
 -- Run the following statement within donation_tracking database terminal:
 
-DROP TABLE donor_donations;
+DROP TABLE donation;
+
+DROP TABLE donor;
 
 
-
--- Switch to the postgre database and run:
+-- Switch to the postgres database and run:
 DROP DATABASE donation_tracking;
 DROP USER donation_tracker_user;
 

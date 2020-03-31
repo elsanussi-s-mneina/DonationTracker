@@ -80,6 +80,7 @@
     <Compile Include="DBConnect.cs" />
     <Compile Include="IntegrationLayerException.cs" />
     <Compile Include="Model\DonorDonationTotalByDonor.cs" />
+    <Compile Include="Model\DonorQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
