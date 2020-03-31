@@ -19,6 +19,8 @@ public partial class MainWindow
 
 	private global::Gtk.Button PerDonorTotalButton;
 
+	private global::Gtk.Label TableTitleLabel;
+
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
@@ -97,13 +99,23 @@ public partial class MainWindow
 		global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.PerDonorTotalButton]));
 		w7.X = 394;
 		w7.Y = 231;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.TableTitleLabel = new global::Gtk.Label();
+		this.TableTitleLabel.Name = "TableTitleLabel";
+		this.TableTitleLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<span size=\"35510\">Select button on right to show data.</span>");
+		this.TableTitleLabel.UseMarkup = true;
+		this.TableTitleLabel.Justify = ((global::Gtk.Justification)(2));
+		this.fixed1.Add(this.TableTitleLabel);
+		global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.TableTitleLabel]));
+		w8.X = 70;
+		w8.Y = 107;
 		this.Add(this.fixed1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 874;
-		this.DefaultHeight = 374;
+		this.DefaultWidth = 18474;
+		this.DefaultHeight = 1386;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.ShowTableButton.Clicked += new global::System.EventHandler(this.OnShowTableButtonClicked);

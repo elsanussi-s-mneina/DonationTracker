@@ -60,6 +60,10 @@ public partial class MainWindow : Gtk.Window
             i++;
         }
 
+        TableTitleLabel.Text = "<span size='35510'>Donations</span>";
+        TableTitleLabel.UseMarkup = true;
+        TableTitleLabel.Realize();
+
         ShowAll();
     }
 
@@ -117,9 +121,13 @@ public partial class MainWindow : Gtk.Window
             DonorsTableView.Attach(firstName1, 0, 1, i, i + 1);
             DonorsTableView.Attach(lastName1, 1, 2, i, i + 1);
             DonorsTableView.Attach(amount1, 2, 3, i, i + 1);
-
+            
             i++;
         }
+
+        TableTitleLabel.Text = "<span size='35510'>Donation Total Amount Per Donor</span>";
+        TableTitleLabel.UseMarkup = true;
+        TableTitleLabel.Realize();
 
         ShowAll();
     }

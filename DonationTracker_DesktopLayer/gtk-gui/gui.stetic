@@ -7,7 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/DonationTracker.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="874 374">
+  <widget class="Gtk.Window" id="MainWindow" design-size="18474 1386">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Donor Tracker</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -170,6 +170,18 @@
           <packing>
             <property name="X">394</property>
             <property name="Y">231</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="TableTitleLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">&lt;span size="35510"&gt;Select button on right to show data.&lt;/span&gt;</property>
+            <property name="UseMarkup">True</property>
+            <property name="Justify">Center</property>
+          </widget>
+          <packing>
+            <property name="X">70</property>
+            <property name="Y">107</property>
           </packing>
         </child>
       </widget>
