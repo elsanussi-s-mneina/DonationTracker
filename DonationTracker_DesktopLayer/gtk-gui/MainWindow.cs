@@ -28,6 +28,8 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("Donor Tracker");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		this.DefaultWidth = 150;
+		this.DefaultHeight = 110;
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.fixed1 = new global::Gtk.Fixed();
 		this.fixed1.Name = "fixed1";
@@ -114,8 +116,6 @@ public partial class MainWindow
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 18474;
-		this.DefaultHeight = 1386;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.ShowTableButton.Clicked += new global::System.EventHandler(this.OnShowTableButtonClicked);

@@ -5,12 +5,21 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/DonationTracker.exe" internal="true" />
+    <widget-library name="../bin/Release/DonationTracker.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="gtk-cancel">
+      <source>
+        <property name="Image">stock:gtk-cancel Menu</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="18474 1386">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Donor Tracker</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">150</property>
+    <property name="DefaultHeight">110</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.Fixed" id="fixed1">
@@ -187,7 +196,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="DonationTracker.Desktop.DonorAdditionWindow" design-size="400 300">
+  <widget class="Gtk.Window" id="DonationTracker.Desktop.DonorAdditionWindow" design-size="432 334">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Add Donor</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -234,6 +243,7 @@
         <child>
           <widget class="Gtk.Button" id="DonorAdditionButton">
             <property name="MemberName" />
+            <property name="WidthRequest">150</property>
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
             <property name="Label" translatable="yes">Add Donor</property>
@@ -241,8 +251,8 @@
             <signal name="Clicked" handler="AddDonor" />
           </widget>
           <packing>
-            <property name="X">282</property>
-            <property name="Y">254</property>
+            <property name="X">200</property>
+            <property name="Y">240</property>
           </packing>
         </child>
         <child>
@@ -273,6 +283,21 @@
           <packing>
             <property name="X">29</property>
             <property name="Y">195</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="CancelButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <signal name="Clicked" handler="Cancel" />
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="X">107</property>
+            <property name="Y">240</property>
           </packing>
         </child>
       </widget>

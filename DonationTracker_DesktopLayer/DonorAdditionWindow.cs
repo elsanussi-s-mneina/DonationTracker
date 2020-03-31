@@ -100,5 +100,11 @@ namespace DonationTracker.Desktop
             md.Run();
             md.Destroy();
         }
+
+        protected void Cancel(object sender, EventArgs e)
+        {
+            // close window
+            Destroy();
+        }
     }
 }

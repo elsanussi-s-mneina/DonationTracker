@@ -20,6 +20,8 @@ namespace DonationTracker.Desktop
 
 		private global::Gtk.Label label5;
 
+		private global::Gtk.Button CancelButton;
+
 		protected virtual void Build()
 		{
 			global::Stetic.Gui.Initialize(this);
@@ -63,14 +65,15 @@ namespace DonationTracker.Desktop
 			w3.Y = 187;
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.DonorAdditionButton = new global::Gtk.Button();
+			this.DonorAdditionButton.WidthRequest = 150;
 			this.DonorAdditionButton.CanFocus = true;
 			this.DonorAdditionButton.Name = "DonorAdditionButton";
 			this.DonorAdditionButton.UseUnderline = true;
 			this.DonorAdditionButton.Label = global::Mono.Unix.Catalog.GetString("Add Donor");
 			this.fixed1.Add(this.DonorAdditionButton);
 			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.DonorAdditionButton]));
-			w4.X = 282;
-			w4.Y = 254;
+			w4.X = 200;
+			w4.Y = 240;
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.label3 = new global::Gtk.Label();
 			this.label3.Name = "label3";
@@ -95,15 +98,27 @@ namespace DonationTracker.Desktop
 			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.label5]));
 			w7.X = 29;
 			w7.Y = 195;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.CancelButton = new global::Gtk.Button();
+			this.CancelButton.CanFocus = true;
+			this.CancelButton.Name = "CancelButton";
+			this.CancelButton.UseStock = true;
+			this.CancelButton.UseUnderline = true;
+			this.CancelButton.Label = "gtk-cancel";
+			this.fixed1.Add(this.CancelButton);
+			global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.CancelButton]));
+			w8.X = 107;
+			w8.Y = 240;
 			this.Add(this.fixed1);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
+			this.DefaultWidth = 432;
+			this.DefaultHeight = 334;
 			this.Show();
 			this.DonorAdditionButton.Clicked += new global::System.EventHandler(this.AddDonor);
+			this.CancelButton.Clicked += new global::System.EventHandler(this.Cancel);
 		}
 	}
 }
