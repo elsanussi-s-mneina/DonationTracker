@@ -2,7 +2,7 @@
 
 
 -- Run the following staement within donation_tracking database terminal:
-DROP TABLE donor_donations
+DROP TABLE donor_donations;
 
 
 
