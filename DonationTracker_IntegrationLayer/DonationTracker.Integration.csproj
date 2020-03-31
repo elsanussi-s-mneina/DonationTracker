@@ -89,7 +89,6 @@
     <None Include="DatabaseSetup1.sql" />
     <None Include="DatabaseTearDown.sql" />
     <None Include="DatabaseSetup2.sql" />
-    <None Include="DatabaseTearDown %28copy%29.sql" />
     <None Include="setupDatabase.bash" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
