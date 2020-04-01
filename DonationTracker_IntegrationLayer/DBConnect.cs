@@ -132,6 +132,51 @@ namespace DonationTracker.Integration
 
         }
 
+        internal IList<DonorDonation> ReadAllDonorsPagination(int offset, int limit)
+        {
+            IList<DonorDonation> donorDonations = new List<DonorDonation>();
+
+            if (OpenConnection())
+            {
+                NpgsqlCommand command = new NpgsqlCommand();
+
+                command.Connection = connection;
+
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText =
+                    "SELECT donor.id, donor.first_name, donor.last_name, donation.donation_amount FROM donation INNER JOIN donor ON donation.donor_id = donor.id LIMIT @limit OFFSET @offset;";
+
+
+                var offsetParameter = new NpgsqlParameter("@offset", offset);
+                offsetParameter.DbType = System.Data.DbType.Int32;
+                command.Parameters.Add(offsetParameter);
+
+                var limitParameter = new NpgsqlParameter("@limit", limit);
+                limitParameter.DbType = System.Data.DbType.Int32;
+                command.Parameters.Add(limitParameter);
+
+
+
+                NpgsqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    var donorDonation = new DonorDonation();
+                    int id = dataReader.GetInt32(0);
+                    donorDonation.FirstName = dataReader.GetString(1);
+                    donorDonation.LastName = dataReader.GetString(2);
+                    donorDonation.DonationAmount = dataReader.GetDecimal(3);
+
+                    donorDonations.Add(donorDonation);
+                }
+
+                CloseConnection();
+            }
+
+            return donorDonations;
+
+        }
+
 
         public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
         {

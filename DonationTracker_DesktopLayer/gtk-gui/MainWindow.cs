@@ -11,7 +11,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label label1;
 
-	private global::Gtk.Button button2;
+	private global::Gtk.Button DonationAdditionButton;
 
 	private global::Gtk.Button TotalAmountCalculationButton;
 
@@ -20,6 +20,12 @@ public partial class MainWindow
 	private global::Gtk.Button PerDonorTotalButton;
 
 	private global::Gtk.Label TableTitleLabel;
+
+	private global::Gtk.Button NextButton;
+
+	private global::Gtk.Button PreviousButton;
+
+	private global::Gtk.ToggleButton ShowDonationsPaginatedButton;
 
 	protected virtual void Build()
 	{
@@ -32,7 +38,6 @@ public partial class MainWindow
 		this.DefaultHeight = 110;
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.fixed1 = new global::Gtk.Fixed();
-		this.fixed1.Name = "fixed1";
 		this.fixed1.HasWindow = false;
 		// Container child fixed1.Gtk.Fixed+FixedChild
 		this.ShowTableButton = new global::Gtk.Button();
@@ -65,13 +70,13 @@ public partial class MainWindow
 		w3.X = 130;
 		w3.Y = 30;
 		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.button2 = new global::Gtk.Button();
-		this.button2.CanFocus = true;
-		this.button2.Name = "button2";
-		this.button2.UseUnderline = true;
-		this.button2.Label = global::Mono.Unix.Catalog.GetString("Add Donations");
-		this.fixed1.Add(this.button2);
-		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.button2]));
+		this.DonationAdditionButton = new global::Gtk.Button();
+		this.DonationAdditionButton.CanFocus = true;
+		this.DonationAdditionButton.Name = "DonationAdditionButton";
+		this.DonationAdditionButton.UseUnderline = true;
+		this.DonationAdditionButton.Label = global::Mono.Unix.Catalog.GetString("Add Donations");
+		this.fixed1.Add(this.DonationAdditionButton);
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.DonationAdditionButton]));
 		w4.X = 397;
 		w4.Y = 141;
 		// Container child fixed1.Gtk.Fixed+FixedChild
@@ -111,6 +116,36 @@ public partial class MainWindow
 		global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.TableTitleLabel]));
 		w8.X = 70;
 		w8.Y = 107;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.NextButton = new global::Gtk.Button();
+		this.NextButton.CanFocus = true;
+		this.NextButton.Name = "NextButton";
+		this.NextButton.UseUnderline = true;
+		this.NextButton.Label = global::Mono.Unix.Catalog.GetString("Next");
+		this.fixed1.Add(this.NextButton);
+		global::Gtk.Fixed.FixedChild w9 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.NextButton]));
+		w9.X = 123;
+		w9.Y = 400;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.PreviousButton = new global::Gtk.Button();
+		this.PreviousButton.CanFocus = true;
+		this.PreviousButton.Name = "PreviousButton";
+		this.PreviousButton.UseUnderline = true;
+		this.PreviousButton.Label = global::Mono.Unix.Catalog.GetString("Previous");
+		this.fixed1.Add(this.PreviousButton);
+		global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.PreviousButton]));
+		w10.X = 55;
+		w10.Y = 400;
+		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.ShowDonationsPaginatedButton = new global::Gtk.ToggleButton();
+		this.ShowDonationsPaginatedButton.CanFocus = true;
+		this.ShowDonationsPaginatedButton.Name = "ShowDonationsPaginatedButton";
+		this.ShowDonationsPaginatedButton.UseUnderline = true;
+		this.ShowDonationsPaginatedButton.Label = global::Mono.Unix.Catalog.GetString("Show Donations (Paginated)");
+		this.fixed1.Add(this.ShowDonationsPaginatedButton);
+		global::Gtk.Fixed.FixedChild w11 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.ShowDonationsPaginatedButton]));
+		w11.X = 200;
+		w11.Y = 400;
 		this.Add(this.fixed1);
 		if ((this.Child != null))
 		{
@@ -119,8 +154,11 @@ public partial class MainWindow
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.ShowTableButton.Clicked += new global::System.EventHandler(this.OnShowTableButtonClicked);
-		this.button2.Clicked += new global::System.EventHandler(this.ShowDonorAdditionWindow);
+		this.DonationAdditionButton.Clicked += new global::System.EventHandler(this.ShowDonorAdditionWindow);
 		this.TotalAmountCalculationButton.Clicked += new global::System.EventHandler(this.CalculateTotalDonationAmount);
 		this.PerDonorTotalButton.Clicked += new global::System.EventHandler(this.CalculatePerDonorTotals);
+		this.NextButton.Clicked += new global::System.EventHandler(this.NextPage);
+		this.PreviousButton.Clicked += new global::System.EventHandler(this.PreviousPage);
+		this.ShowDonationsPaginatedButton.Clicked += new global::System.EventHandler(this.OnShowTableDonationPaginated);
 	}
 }

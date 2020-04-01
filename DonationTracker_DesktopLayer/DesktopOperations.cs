@@ -24,14 +24,14 @@ namespace DonationTracker.Desktop
             donationService.AddDonor(sDonation);
         }
 
-        public IList<Desktop.Model.DonorDonation> ReadAllDonors()
-        {
-            var donorDonations1 = donationService.ReadAllDonors();
 
-            IList<Desktop.Model.DonorDonation> donorDonations2 =
+        private IList<Desktop.Model.DonorDonation> ConvertDonorDonationsFrom(IList<Service.DonorDonation> donorDonationsIn)
+        {
+
+            IList<Desktop.Model.DonorDonation> donorDonationsOut =
                 new List<Desktop.Model.DonorDonation>();
 
-            foreach (DonorDonation d in donorDonations1)
+            foreach (DonorDonation d in donorDonationsIn)
             {
                 Desktop.Model.DonorDonation d2 = new Model.DonorDonation
                 {
@@ -40,10 +40,26 @@ namespace DonationTracker.Desktop
                     DonationAmount = d.DonationAmount
                 };
 
-                donorDonations2.Add(d2);
+                donorDonationsOut.Add(d2);
             }
 
-            return donorDonations2;
+            return donorDonationsOut;
+        }
+
+
+        public IList<Desktop.Model.DonorDonation> ReadAllDonors()
+        {
+            var donorDonations = donationService.ReadAllDonors();
+
+            return ConvertDonorDonationsFrom(donorDonations);
+        }
+
+
+        public IList<Desktop.Model.DonorDonation> ReadSubsetOfDonors(int offset, int limit)
+        {
+            var donorDonations = donationService.ReadSubsetOfDonors(offset, limit);
+
+            return ConvertDonorDonationsFrom(donorDonations);
         }
 
 

@@ -33,25 +33,40 @@ namespace DonationTracker.Service
             }
         }
 
-        public IList<DonorDonation> ReadAllDonors()
+        private IList<DonorDonation> ConvertDonorDonationsFrom(IList<Integration.DonorDonation> donorDonationsIn)
         {
-            IList<DonorDonation> donorDonations = new List<DonorDonation>();
+            IList<DonorDonation> donorDonationsOut = new List<DonorDonation>();
 
-            IList<Integration.DonorDonation> donorDonations2 =
-                operations.ReadAllDonors();
-
-            foreach (var donorDonation in donorDonations2)
+            foreach (var donorDonation in donorDonationsIn)
             {
                 var current = new DonorDonation();
                 current.FirstName = donorDonation.FirstName;
                 current.LastName = donorDonation.LastName;
                 current.DonationAmount = donorDonation.DonationAmount;
 
-                donorDonations.Add(current);
+                donorDonationsOut.Add(current);
             }
 
-            return donorDonations;
+            return donorDonationsOut;
         }
+
+        public IList<DonorDonation> ReadAllDonors()
+        {
+
+            IList<Integration.DonorDonation> donorDonations =
+                operations.ReadAllDonors();
+
+            return ConvertDonorDonationsFrom(donorDonations);
+        }
+
+
+        public IList<DonorDonation> ReadSubsetOfDonors(int offset, int limit)
+        {
+            IList<Integration.DonorDonation> donorDonations = operations.ReadSubsetOfDonors(offset, limit);
+            return ConvertDonorDonationsFrom(donorDonations);
+        }
+
+
 
         public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
         {

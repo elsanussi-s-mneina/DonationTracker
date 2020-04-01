@@ -1,10 +1,17 @@
 ﻿using System;
 using Gtk;
 using DonationTracker.Desktop;
+using System.Collections.Generic;
+using DonationTracker.Desktop.Model;
 
 public partial class MainWindow : Gtk.Window
 {
     DesktopOperations operations = new DesktopOperations();
+
+    // For pagination:
+    // That is for returning only a limited number of records
+    int startIndex = 0;
+    int pageLength = 5;
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -23,9 +30,20 @@ public partial class MainWindow : Gtk.Window
         window.Show();
     }
 
+
+    protected void OnShowTableDonationPaginated(object sender, EventArgs e)
+    {
+        OnShowTable(() => { return operations.ReadSubsetOfDonors(startIndex, pageLength); });
+    }
+
     protected void OnShowTableButtonClicked(object sender, EventArgs e)
     {
-        var donorDonations = operations.ReadAllDonors();
+        OnShowTable(operations.ReadAllDonors);
+    }
+
+    private void OnShowTable(Func<IList<DonorDonation>> queryFunction)
+    {
+        var donorDonations = operations.ReadSubsetOfDonors(startIndex, pageLength);
 
         ClearTable();
         Label firstNameLabel = new Label();
@@ -72,8 +90,6 @@ public partial class MainWindow : Gtk.Window
         decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
 
         TotalDonationAmountLabel.Text = "Total: " + totalDonationAmount.ToString();
-
-        
     }
 
     /// <summary>
@@ -130,5 +146,22 @@ public partial class MainWindow : Gtk.Window
         TableTitleLabel.Realize();
 
         ShowAll();
+    }
+
+    protected void NextPage(object sender, EventArgs e)
+    {
+        startIndex += pageLength;
+        OnShowTableDonationPaginated(sender, e);
+    }
+
+    protected void PreviousPage(object sender, EventArgs e)
+    {
+        startIndex -= pageLength;
+        if (startIndex < 0)
+        {
+            startIndex = 0;
+        }
+
+        OnShowTableDonationPaginated(sender, e);
     }
 }

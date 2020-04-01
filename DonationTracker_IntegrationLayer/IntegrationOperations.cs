@@ -30,6 +30,11 @@ namespace DonationTracker.Integration
             return databaseBridge.ReadAllDonors();
         }
 
+        public IList<DonorDonation> ReadSubsetOfDonors(int offset, int limit)
+        {
+            return databaseBridge.ReadAllDonorsPagination(offset, limit);
+        }
+
         public decimal CalculateTotalDonationAmount()
         {
             return databaseBridge.CalculateTotalDonationAmount();

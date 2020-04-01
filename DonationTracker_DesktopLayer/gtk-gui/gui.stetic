@@ -14,7 +14,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MainWindow" design-size="18474 1386">
+  <widget class="Gtk.Window" id="MainWindow" design-size="18474 1393">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Donor Tracker</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -131,7 +131,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Button" id="button2">
+          <widget class="Gtk.Button" id="DonationAdditionButton">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
@@ -191,6 +191,48 @@
           <packing>
             <property name="X">70</property>
             <property name="Y">107</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="NextButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Next</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="NextPage" />
+          </widget>
+          <packing>
+            <property name="X">123</property>
+            <property name="Y">400</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="PreviousButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Previous</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="PreviousPage" />
+          </widget>
+          <packing>
+            <property name="X">55</property>
+            <property name="Y">400</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ToggleButton" id="ShowDonationsPaginatedButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Show Donations (Paginated)</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnShowTableDonationPaginated" />
+          </widget>
+          <packing>
+            <property name="X">200</property>
+            <property name="Y">400</property>
           </packing>
         </child>
       </widget>
