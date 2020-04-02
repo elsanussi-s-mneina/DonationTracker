@@ -13,3 +13,4 @@ gio = { version = "0.8", features = ["v2_46"] }
 gdk = "0.12"
 log = "0.4"
 postgres = "0.17"
+rust_decimal = { version = "1.4.0", features = ["postgres"] }
