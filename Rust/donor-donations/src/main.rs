@@ -16,8 +16,7 @@ fn on_activate(application: &gtk::Application)
     // … with a button in it …
     let button = gtk::Button::new_with_label("Show Donations");
     // … which closes the window when clicked
-    button.connect_clicked(clone!(@weak window => move |_| database_bridge::access_database()));
-
+    button.connect_clicked(clone!(@weak window => move |button| button.set_label(&database_bridge::get_donations().to_string()) ));
     window.add(&button);
     window.show_all();
 }
