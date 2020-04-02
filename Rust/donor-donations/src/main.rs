@@ -14,18 +14,16 @@ fn on_activate(application: &gtk::Application)
     // … create a new window …
     let window = gtk::ApplicationWindow::new(application);
     // … with a button in it …
-    let button = gtk::Button::new_with_label("Hello World!");
+    let button = gtk::Button::new_with_label("Show Donations");
     // … which closes the window when clicked
-    button.connect_clicked(clone!(@weak window => move |_| window.destroy()));
+    button.connect_clicked(clone!(@weak window => move |_| database_bridge::access_database()));
+
     window.add(&button);
     window.show_all();
 }
 
 fn main()
 {
-    // Talk to the database:
-    database_bridge::access_database();
-
     // Create a new application
     let app = gtk::Application::new(Some("com.github.gtk-rs.examples.basic"), Default::default())
         .expect("Initialization failed...");
