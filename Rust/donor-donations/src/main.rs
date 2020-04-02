@@ -1,6 +1,6 @@
 //  The following code was taken directly from
 // https://www.gtk.org/docs/language-bindings/rust/
-// On April 1, 2020.
+// On April 1, 2020, then modified.
 
 mod database_bridge;
 
@@ -9,7 +9,8 @@ use glib::clone;
 use gtk::prelude::*;
 
 // When the application is launched…
-fn on_activate(application: &gtk::Application) {
+fn on_activate(application: &gtk::Application)
+{
     // … create a new window …
     let window = gtk::ApplicationWindow::new(application);
     // … with a button in it …
@@ -20,7 +21,8 @@ fn on_activate(application: &gtk::Application) {
     window.show_all();
 }
 
-fn main() {
+fn main()
+{
     // Talk to the database:
     database_bridge::access_database();
 
