@@ -77,7 +77,7 @@ namespace DonationTracker.Desktop
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.label3 = new global::Gtk.Label();
 			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("First Name");
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("First Name:");
 			this.fixed1.Add(this.label3);
 			global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.label3]));
 			w5.X = 29;
@@ -85,7 +85,7 @@ namespace DonationTracker.Desktop
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.label4 = new global::Gtk.Label();
 			this.label4.Name = "label4";
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString("Last Name");
+			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString("Last Name:");
 			this.fixed1.Add(this.label4);
 			global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.label4]));
 			w6.X = 29;
@@ -93,7 +93,7 @@ namespace DonationTracker.Desktop
 			// Container child fixed1.Gtk.Fixed+FixedChild
 			this.label5 = new global::Gtk.Label();
 			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("Amount");
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("Amount:");
 			this.fixed1.Add(this.label5);
 			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.label5]));
 			w7.X = 29;

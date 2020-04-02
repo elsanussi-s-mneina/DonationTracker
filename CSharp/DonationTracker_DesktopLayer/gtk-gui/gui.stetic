@@ -300,7 +300,7 @@
         <child>
           <widget class="Gtk.Label" id="label3">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">First Name</property>
+            <property name="LabelProp" translatable="yes">First Name:</property>
           </widget>
           <packing>
             <property name="X">29</property>
@@ -310,7 +310,7 @@
         <child>
           <widget class="Gtk.Label" id="label4">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">Last Name</property>
+            <property name="LabelProp" translatable="yes">Last Name:</property>
           </widget>
           <packing>
             <property name="X">29</property>
@@ -320,7 +320,7 @@
         <child>
           <widget class="Gtk.Label" id="label5">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">Amount</property>
+            <property name="LabelProp" translatable="yes">Amount:</property>
           </widget>
           <packing>
             <property name="X">29</property>
