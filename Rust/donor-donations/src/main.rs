@@ -2,6 +2,8 @@
 // https://www.gtk.org/docs/language-bindings/rust/
 // On April 1, 2020.
 
+mod database_bridge;
+
 use gio::prelude::*;
 use glib::clone;
 use gtk::prelude::*;
@@ -19,6 +21,9 @@ fn on_activate(application: &gtk::Application) {
 }
 
 fn main() {
+    // Talk to the database:
+    database_bridge::access_database();
+
     // Create a new application
     let app = gtk::Application::new(Some("com.github.gtk-rs.examples.basic"), Default::default())
         .expect("Initialization failed...");
