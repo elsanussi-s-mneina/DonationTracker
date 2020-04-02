@@ -1,7 +1,3 @@
-//  The following code was taken directly from
-// https://www.gtk.org/docs/language-bindings/rust/
-// On April 1, 2020, then modified.
-
 mod database_bridge;
 
 use gio::prelude::*;
@@ -13,11 +9,27 @@ fn on_activate(application: &gtk::Application)
 {
     // … create a new window …
     let window = gtk::ApplicationWindow::new(application);
+
+    window.set_title("Donor Tracker");
+    window.set_border_width(10);
+    window.set_position(gtk::WindowPosition::Center);
+    window.set_default_size(350, 70);
+
+
+    let vbox = gtk::Box::new(gtk::Orientation::Vertical, 12);
+
     // … with a button in it …
     let button = gtk::Button::new_with_label("Show Donations");
-    // … which closes the window when clicked
-    button.connect_clicked(clone!(@weak window => move |button| button.set_label(&database_bridge::get_donations().to_string()) ));
-    window.add(&button);
+    // that shows the donations in the following label:
+    let label = gtk::Label::new(None);
+
+    window.add(&vbox);
+
+    vbox.add(&button);
+    vbox.add(&label);
+
+    button.connect_clicked(clone!(@weak window => move |button| label.set_label(&database_bridge::get_donations().to_string())));
+
     window.show_all();
 }
 
