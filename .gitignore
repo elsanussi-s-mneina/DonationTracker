@@ -403,3 +403,5 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+Rust/donor-donations/target/.rustc_info.json
+Rust/donor-donations/target/rls/.rustc_info.json
