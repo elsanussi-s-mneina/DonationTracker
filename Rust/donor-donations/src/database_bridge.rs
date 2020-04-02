@@ -1,10 +1,14 @@
 use postgres::{Client, NoTls};
 use rust_decimal::Decimal;
 
+fn connection_parameters() -> String
+{
+    String::from("host=localhost user=donation_tracker_user dbname=donation_tracking password=secret1secret")
+}
 
 pub fn get_donations() -> String
 {
-    let mut client = Client::connect("host=localhost user=donation_tracker_user dbname=donation_tracking password=secret1secret", NoTls).unwrap();
+    let mut client = Client::connect(&connection_parameters(), NoTls).unwrap();
 
     let mut result : String = String::new();
     for row in client.query("SELECT donor.id, donor.first_name, donor.last_name, donation.donation_amount FROM donation INNER JOIN donor ON donation.donor_id = donor.id;", &[]).unwrap()
@@ -32,7 +36,7 @@ pub fn get_donations() -> String
 
 pub fn calculate_total_donation_amount() -> String
 {
-    let mut client = Client::connect("host=localhost user=donation_tracker_user dbname=donation_tracking password=secret1secret", NoTls).unwrap();
+    let mut client = Client::connect(&connection_parameters(), NoTls).unwrap();
 
     let mut result : String = String::new();
     for row in client.query("SELECT COALESCE(SUM(donation_amount),0) FROM donation;", &[]).unwrap()
