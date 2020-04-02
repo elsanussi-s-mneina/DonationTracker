@@ -28,3 +28,18 @@ pub fn get_donations() -> String
     }
     return result.to_string();
 }
+
+
+pub fn calculate_total_donation_amount() -> String
+{
+    let mut client = Client::connect("host=localhost user=donation_tracker_user dbname=donation_tracking password=secret1secret", NoTls).unwrap();
+
+    let mut result : String = String::new();
+    for row in client.query("SELECT COALESCE(SUM(donation_amount),0) FROM donation;", &[]).unwrap()
+    {
+        let total: Decimal = row.get(0);
+        result.push_str(&total.to_string());
+    }
+
+    return result;
+}

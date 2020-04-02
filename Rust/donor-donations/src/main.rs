@@ -18,17 +18,25 @@ fn on_activate(application: &gtk::Application)
 
     let vbox = gtk::Box::new(gtk::Orientation::Vertical, 12);
 
-    // … with a button in it …
-    let button = gtk::Button::new_with_label("Show Donations");
-    // that shows the donations in the following label:
+    let show_donations_button = gtk::Button::new_with_label("Show Donations");
+    let show_total_amount_button = gtk::Button::new_with_label("Calculate Total Donation Amount");
     let label = gtk::Label::new(None);
+    let total_donation_prelabel = gtk::Label::new(Some("Total donation amount:"));
+    let total_donation_label = gtk::Label::new(None);
 
     window.add(&vbox);
 
-    vbox.add(&button);
-    vbox.add(&label);
 
-    button.connect_clicked(clone!(@weak window => move |button| label.set_label(&database_bridge::get_donations().to_string())));
+    vbox.add(&show_donations_button);
+    vbox.add(&show_total_amount_button);
+    vbox.add(&label);
+    vbox.add(&total_donation_prelabel);
+    vbox.add(&total_donation_label);
+
+    show_donations_button.connect_clicked(clone!(@weak window => move |button| label.set_label(&database_bridge::get_donations().to_string())));
+    show_total_amount_button.connect_clicked(clone!(@weak window => move |button| total_donation_label.set_label(&database_bridge::calculate_total_donation_amount().to_string())));
+
+
 
     window.show_all();
 }
