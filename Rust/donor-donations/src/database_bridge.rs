@@ -11,7 +11,14 @@ pub fn get_donations() -> String
     let mut client = Client::connect(&connection_parameters(), NoTls).unwrap();
 
     let mut result : String = String::new();
-    for row in client.query("SELECT donor.id, donor.first_name, donor.last_name, donation.donation_amount FROM donation INNER JOIN donor ON donation.donor_id = donor.id;", &[]).unwrap()
+    for row in client.query("SELECT donor.id, 
+                                    donor.first_name, 
+                                    donor.last_name, 
+                                    donation.donation_amount 
+                             FROM donation 
+                             INNER JOIN donor 
+                             ON donation.donor_id = donor.id;"
+                           , &[]).unwrap()
     {
         let id: i32 = row.get(0);
         let first_name: &str = row.get(1);
