@@ -12,6 +12,7 @@ public partial class MainWindow : Gtk.Window
     // That is for returning only a limited number of records
     int startIndex = 0;
     int pageLength = 5;
+    const string CURRENCY_SYMBOL_BEFORE = "$";
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -68,7 +69,8 @@ public partial class MainWindow : Gtk.Window
         {
             Label firstName1 = new Label(d.FirstName);
             Label lastName1 = new Label(d.LastName);
-            Label amount1 = new Label(d.DonationAmount.ToString());
+            string donationAmountString = AddCurrencySymbol(d.DonationAmount);
+            Label amount1 = new Label(donationAmountString);
 
 
             DonorsTableView.Attach(firstName1, 0, 1, i, i + 1);
@@ -85,11 +87,16 @@ public partial class MainWindow : Gtk.Window
         ShowAll();
     }
 
+    private string AddCurrencySymbol(decimal monetaryAmount)
+    {
+        return CURRENCY_SYMBOL_BEFORE + monetaryAmount;
+    }
+
     protected void CalculateTotalDonationAmount(object sender, EventArgs e)
     {
         decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
-
-        TotalDonationAmountLabel.Text = "Total: " + totalDonationAmount.ToString();
+        TotalDonationAmountLabel.Text = "Total: "
+              + AddCurrencySymbol(totalDonationAmount);
     }
 
     /// <summary>
@@ -131,8 +138,9 @@ public partial class MainWindow : Gtk.Window
         {
             Label firstName1 = new Label(d.FirstName);
             Label lastName1 = new Label(d.LastName);
-            Label amount1 = new Label(d.TotalDonationAmount.ToString());
 
+            string donationAmountString = AddCurrencySymbol(d.TotalDonationAmount);
+            Label amount1 = new Label(donationAmountString);
 
             DonorsTableView.Attach(firstName1, 0, 1, i, i + 1);
             DonorsTableView.Attach(lastName1, 1, 2, i, i + 1);
