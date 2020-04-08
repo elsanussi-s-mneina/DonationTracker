@@ -4,7 +4,7 @@ using Eto.Forms;
 using Eto.Drawing;
 using Eto.Serialization.Xaml;
 
-namespace DonationTracker
+namespace DonationTracker.Desktop
 {
     public class MainForm : Form
     {

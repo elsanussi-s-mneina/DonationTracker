@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker", "DonationTracker\DonationTracker\DonationTracker.csproj", "{976FE0BC-9230-4252-A631-C18943B4D087}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Desktop", "DonationTracker\DonationTracker\DonationTracker.Desktop.csproj", "{976FE0BC-9230-4252-A631-C18943B4D087}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Gtk", "DonationTracker\DonationTracker.Gtk\DonationTracker.Gtk.csproj", "{77E8ADEE-0E75-4839-91A6-DC5BBA5F8591}"
 EndProject

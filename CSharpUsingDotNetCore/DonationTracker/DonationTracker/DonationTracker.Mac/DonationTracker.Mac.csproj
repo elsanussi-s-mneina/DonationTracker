@@ -8,11 +8,10 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <ProjectReference Include="..\DonationTracker\DonationTracker.csproj" />
-  </ItemGroup>
-	
-  <ItemGroup>
     <PackageReference Include="Eto.Platform.Mac64" Version="2.5.0" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <ProjectReference Include="..\DonationTracker\DonationTracker.Desktop.csproj" />
+  </ItemGroup>
 </Project>
