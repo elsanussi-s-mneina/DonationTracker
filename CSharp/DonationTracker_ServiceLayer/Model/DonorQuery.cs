@@ -1,11 +1,9 @@
 ﻿namespace DonationTracker.Service
 {
-    public class DonorDonationTotalByDonor
+    public class DonorQuery
     {
-        public string FirstName { get; set; }
+        public string FirstName { get; }
 
-        public string LastName { get; set; }
-
-        public decimal TotalDonationAmount { get; set; }
+        public string LastName { get; }
     }
 }
