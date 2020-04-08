@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net461</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>false</ExternalConsole>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eto.Platform.Gtk" Version="2.5.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\DonationTracker.DesktopGUI\DonationTracker.DesktopGUI.csproj" />
+  </ItemGroup>
+</Project>
