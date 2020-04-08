@@ -5,8 +5,8 @@ namespace DonationTracker.Service
 {
     public class ServiceLayerException : Exception
     {
-        public ServiceLayerException(IntegrationLayerException exception)
- : base(exception.Message, exception)
+        public ServiceLayerException(IntegrationLayerException exception) :
+            base(exception.Message, exception)
         {
         }
 

@@ -110,10 +110,12 @@ namespace DonationTracker.Integration
                     string lastName = dataReader.GetString(2);
                     decimal donationAmount = dataReader.GetDecimal(3);
 
-                    var donorDonation = new DonorDonation(
+                    var donorDonation = new DonorDonation
+                    (
                         firstName: firstName,
                         lastName: lastName,
-                        donationAmount: donationAmount);
+                        donationAmount: donationAmount
+                    );
 
                     donorDonations.Add(donorDonation);
                 }
@@ -159,10 +161,12 @@ namespace DonationTracker.Integration
                     string lastName = dataReader.GetString(2);
                     decimal donationAmount = dataReader.GetDecimal(3);
 
-                    var donorDonation = new DonorDonation(
+                    var donorDonation = new DonorDonation
+                    (
                         firstName: firstName,
                         lastName: lastName,
-                        donationAmount: donationAmount);
+                        donationAmount: donationAmount
+                    );
 
                     donorDonations.Add(donorDonation);
                 }
@@ -198,11 +202,12 @@ namespace DonationTracker.Integration
                     string firstName = dataReader.GetString(1);
                     string lastName = dataReader.GetString(2);
                     decimal totalDonationAmount = dataReader.GetDecimal(3);
-                    var donorDonation = new DonorDonationTotalByDonor(
+                    var donorDonation = new DonorDonationTotalByDonor
+                    (
                         firstName: firstName,
                         lastName: lastName,
                         totalDonationAmount: totalDonationAmount
-                        );
+                    );
 
                     donorDonations.Add(donorDonation);
                 }

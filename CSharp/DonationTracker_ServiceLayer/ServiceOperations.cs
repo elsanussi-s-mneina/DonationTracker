@@ -5,7 +5,7 @@ namespace DonationTracker.Service
 {
     public class ServiceOperations
     {
-        readonly IntegrationOperations operations;
+        private readonly IntegrationOperations operations;
 
         public ServiceOperations()
         {
@@ -16,11 +16,12 @@ namespace DonationTracker.Service
         {
             try
             {
-                var donation2 = new Integration.DonorDonation(
+                var donation2 = new Integration.DonorDonation
+                (
                     firstName: donation.FirstName,
                     lastName: donation.LastName,
                     donationAmount: donation.DonationAmount
-                    );
+                );
 
                 operations.AddDonor(donation2);
             }
@@ -40,11 +41,12 @@ namespace DonationTracker.Service
 
             foreach (var donorDonation in donorDonationsIn)
             {
-                var current = new DonorDonation(
+                var current = new DonorDonation
+                (
                     firstName: donorDonation.FirstName,
                     lastName: donorDonation.LastName,
                     donationAmount: donorDonation.DonationAmount
-                    );
+                );
                 donorDonationsOut.Add(current);
             }
 
@@ -78,11 +80,12 @@ namespace DonationTracker.Service
 
             foreach (var donorDonation in donorDonations2)
             {
-                var current = new DonorDonationTotalByDonor(
+                var current = new DonorDonationTotalByDonor
+                (
                     firstName: donorDonation.FirstName,
                     lastName: donorDonation.LastName,
                     totalDonationAmount: donorDonation.TotalDonationAmount
-                    );
+                );
 
 
                 donorDonations.Add(current);
@@ -94,9 +97,11 @@ namespace DonationTracker.Service
         public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
         {
 
-            var donorQuery2 = new Integration.DonorQuery(
-                                donorQuery.FirstName,
-                                donorQuery.LastName);
+            var donorQuery2 = new Integration.DonorQuery
+            (
+                donorQuery.FirstName,
+                donorQuery.LastName
+            );
 
             return operations.GetIDOfMatchingDonor(donorQuery2);
         }
