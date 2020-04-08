@@ -6,11 +6,6 @@ namespace DonationTracker.Integration
 {
     public class DBConnect
     {
-        // The following article is a useful tutorial to help understand
-        // this code:
-        // https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
-        // Some of the code here is patterned after the code in the tutorial.
-
         private readonly NpgsqlConnection connection;
         private string server;
         private string database;
