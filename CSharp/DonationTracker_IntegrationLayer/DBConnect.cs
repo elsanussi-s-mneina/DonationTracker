@@ -116,11 +116,15 @@ namespace DonationTracker.Integration
 
                 while (dataReader.Read())
                 {
-                    var donorDonation = new DonorDonation();
                     int id = dataReader.GetInt32(0);
-                    donorDonation.FirstName = dataReader.GetString(1);
-                    donorDonation.LastName = dataReader.GetString(2);
-                    donorDonation.DonationAmount = dataReader.GetDecimal(3);
+                    string firstName = dataReader.GetString(1);
+                    string lastName = dataReader.GetString(2);
+                    decimal donationAmount = dataReader.GetDecimal(3);
+
+                    var donorDonation = new DonorDonation(
+                        firstName: firstName,
+                        lastName: lastName,
+                        donationAmount: donationAmount);
 
                     donorDonations.Add(donorDonation);
                 }
@@ -161,11 +165,15 @@ namespace DonationTracker.Integration
 
                 while (dataReader.Read())
                 {
-                    var donorDonation = new DonorDonation();
                     int id = dataReader.GetInt32(0);
-                    donorDonation.FirstName = dataReader.GetString(1);
-                    donorDonation.LastName = dataReader.GetString(2);
-                    donorDonation.DonationAmount = dataReader.GetDecimal(3);
+                    string firstName = dataReader.GetString(1);
+                    string lastName = dataReader.GetString(2);
+                    decimal donationAmount = dataReader.GetDecimal(3);
+
+                    var donorDonation = new DonorDonation(
+                        firstName: firstName,
+                        lastName: lastName,
+                        donationAmount: donationAmount);
 
                     donorDonations.Add(donorDonation);
                 }
@@ -197,11 +205,15 @@ namespace DonationTracker.Integration
 
                 while (dataReader.Read())
                 {
-                    var donorDonation = new DonorDonationTotalByDonor();
                     int id = dataReader.GetInt32(0);
-                    donorDonation.FirstName = dataReader.GetString(1);
-                    donorDonation.LastName = dataReader.GetString(2);
-                    donorDonation.TotalDonationAmount = dataReader.GetDecimal(3);
+                    string firstName = dataReader.GetString(1);
+                    string lastName = dataReader.GetString(2);
+                    decimal totalDonationAmount = dataReader.GetDecimal(3);
+                    var donorDonation = new DonorDonationTotalByDonor(
+                        firstName: firstName,
+                        lastName: lastName,
+                        totalDonationAmount: totalDonationAmount
+                        );
 
                     donorDonations.Add(donorDonation);
                 }
@@ -246,11 +258,8 @@ namespace DonationTracker.Integration
         public void Insert(DonorDonation donation)
         {
             int? id = GetIDOfMatchingDonor(
-                     new DonorQuery
-                       {
-                         FirstName = donation.FirstName,
-                         LastName = donation.LastName
-                       });
+                     new DonorQuery(donation.FirstName, donation.LastName));
+
       
             if (id == null && OpenConnection())
             {

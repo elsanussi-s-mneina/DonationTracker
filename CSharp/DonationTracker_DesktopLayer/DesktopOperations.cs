@@ -15,11 +15,11 @@ namespace DonationTracker.Desktop
         public void AddDonor(Desktop.Model.DonorDonation donation)
         {
             var sDonation = new Service.DonorDonation
-            {
-                FirstName = donation.FirstName,
-                LastName = donation.LastName,
-                DonationAmount = donation.DonationAmount
-            };
+            (
+                firstName: donation.FirstName,
+                lastName: donation.LastName,
+                donationAmount: donation.DonationAmount
+            );
 
             donationService.AddDonor(sDonation);
         }
@@ -34,11 +34,11 @@ namespace DonationTracker.Desktop
             foreach (DonorDonation d in donorDonationsIn)
             {
                 Desktop.Model.DonorDonation d2 = new Model.DonorDonation
-                {
-                    FirstName = d.FirstName,
-                    LastName = d.LastName,
-                    DonationAmount = d.DonationAmount
-                };
+                (
+                    firstName: d.FirstName,
+                    lastName: d.LastName,
+                    donationAmount: d.DonationAmount
+                );
 
                 donorDonationsOut.Add(d2);
             }
@@ -74,11 +74,11 @@ namespace DonationTracker.Desktop
             foreach (DonorDonationTotalByDonor d in donorDonations1)
             {
                 Desktop.Model.DonorDonationTotalByDonor d2 = new Model.DonorDonationTotalByDonor
-                {
-                    FirstName = d.FirstName,
-                    LastName = d.LastName,
-                    TotalDonationAmount = d.TotalDonationAmount
-                };
+                (
+                    firstName: d.FirstName,
+                    lastName: d.LastName,
+                    totalDonationAmount: d.TotalDonationAmount
+                );
 
                 donorDonations2.Add(d2);
             }

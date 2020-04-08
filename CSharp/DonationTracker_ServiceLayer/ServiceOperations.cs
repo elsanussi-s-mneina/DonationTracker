@@ -5,7 +5,7 @@ namespace DonationTracker.Service
 {
     public class ServiceOperations
     {
-        IntegrationOperations operations;
+        readonly IntegrationOperations operations;
 
         public ServiceOperations()
         {
@@ -16,10 +16,11 @@ namespace DonationTracker.Service
         {
             try
             {
-                var donation2 = new Integration.DonorDonation();
-                donation2.FirstName = donation.FirstName;
-                donation2.LastName = donation.LastName;
-                donation2.DonationAmount = donation.DonationAmount;
+                var donation2 = new Integration.DonorDonation(
+                    firstName: donation.FirstName,
+                    lastName: donation.LastName,
+                    donationAmount: donation.DonationAmount
+                    );
 
                 operations.AddDonor(donation2);
             }
@@ -39,11 +40,11 @@ namespace DonationTracker.Service
 
             foreach (var donorDonation in donorDonationsIn)
             {
-                var current = new DonorDonation();
-                current.FirstName = donorDonation.FirstName;
-                current.LastName = donorDonation.LastName;
-                current.DonationAmount = donorDonation.DonationAmount;
-
+                var current = new DonorDonation(
+                    firstName: donorDonation.FirstName,
+                    lastName: donorDonation.LastName,
+                    donationAmount: donorDonation.DonationAmount
+                    );
                 donorDonationsOut.Add(current);
             }
 
@@ -77,10 +78,12 @@ namespace DonationTracker.Service
 
             foreach (var donorDonation in donorDonations2)
             {
-                var current = new DonorDonationTotalByDonor();
-                current.FirstName = donorDonation.FirstName;
-                current.LastName = donorDonation.LastName;
-                current.TotalDonationAmount = donorDonation.TotalDonationAmount;
+                var current = new DonorDonationTotalByDonor(
+                    firstName: donorDonation.FirstName,
+                    lastName: donorDonation.LastName,
+                    totalDonationAmount: donorDonation.TotalDonationAmount
+                    );
+
 
                 donorDonations.Add(current);
             }
@@ -91,10 +94,9 @@ namespace DonationTracker.Service
         public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
         {
 
-            var donorQuery2 = new Integration.DonorQuery();
-            donorQuery2.FirstName = donorQuery.FirstName;
-            donorQuery2.LastName = donorQuery.LastName;
-
+            var donorQuery2 = new Integration.DonorQuery(
+                                donorQuery.FirstName,
+                                donorQuery.LastName);
 
             return operations.GetIDOfMatchingDonor(donorQuery2);
         }

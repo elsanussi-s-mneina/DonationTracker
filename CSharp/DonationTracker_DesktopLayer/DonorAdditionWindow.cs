@@ -47,18 +47,24 @@ namespace DonationTracker.Desktop
                 return;
             }
 
-            var donorDonation = new Model.DonorDonation();
 
             decimal conversionResult;
 
-            donorDonation.FirstName = FirstNameTextBox.Text;
-            donorDonation.LastName = LastNameTextBox.Text;
+            string firstName = FirstNameTextBox.Text;
+            string lastName = LastNameTextBox.Text;
 
             if (decimal.TryParse(AmountTextBox.Text, out conversionResult))
             {
-                donorDonation.DonationAmount = conversionResult;
+                decimal donationAmount = conversionResult;
                 try
                 {
+                    var donorDonation = new Model.DonorDonation
+                    (
+                        firstName: firstName,
+                        lastName: lastName,
+                        donationAmount: donationAmount
+                    );
+
                     operations.AddDonor(donorDonation);
                     FirstNameTextBox.Text = string.Empty;
                     LastNameTextBox.Text = string.Empty;
