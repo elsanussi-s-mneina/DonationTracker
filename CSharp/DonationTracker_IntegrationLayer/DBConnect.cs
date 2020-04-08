@@ -11,18 +11,13 @@ namespace DonationTracker.Integration
         // https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
         // Some of the code here is patterned after the code in the tutorial.
 
-        private NpgsqlConnection connection;
+        private readonly NpgsqlConnection connection;
         private string server;
         private string database;
         private string uid;
         private string password;
 
         public DBConnect()
-        {
-            Initialize();
-        }
-
-        public void Initialize()
         {
             server = "localhost";
             database = "donation_tracking";
@@ -33,7 +28,6 @@ namespace DonationTracker.Integration
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             connection = new NpgsqlConnection(connectionString);
-
         }
 
         internal decimal CalculateTotalDonationAmount()

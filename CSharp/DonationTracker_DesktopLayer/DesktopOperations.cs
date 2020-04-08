@@ -5,7 +5,7 @@ namespace DonationTracker.Desktop
 {
     public class DesktopOperations
     {
-        ServiceOperations donationService;
+        private readonly ServiceOperations donationService;
 
         public DesktopOperations()
         {

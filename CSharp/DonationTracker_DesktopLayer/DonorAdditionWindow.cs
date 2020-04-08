@@ -6,7 +6,7 @@ namespace DonationTracker.Desktop
 {
     public partial class DonorAdditionWindow : Gtk.Window
     {
-        private DesktopOperations operations;
+        private readonly DesktopOperations operations;
 
         public DonorAdditionWindow(DesktopOperations operations) :
                 base(Gtk.WindowType.Toplevel)

@@ -6,7 +6,7 @@ using DonationTracker.Desktop.Model;
 
 public partial class MainWindow : Gtk.Window
 {
-    DesktopOperations operations = new DesktopOperations();
+    private readonly DesktopOperations operations = new DesktopOperations();
 
     // For pagination:
     // That is for returning only a limited number of records
