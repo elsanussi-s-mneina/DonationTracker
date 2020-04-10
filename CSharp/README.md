@@ -1,4 +1,4 @@
-﻿# Donation Tracker Project
+# Donation Tracker Project
 
 This application is still a prototype, and is not ready for serious use.
 
@@ -6,7 +6,7 @@ This is meant to become a desktop application that can be used to add informatio
 about donations to a charitable organization. So far very few features are implemented.
 
 This project is written in C# using the .NET framework 4.x.
-I wrote it using GTK# so that it could run on Windows, Mac, or Linux.
+I wrote it using Eto Forms so that it could run on Windows, Mac, or Linux.
 
 Although, I have only tested it so far on Mac.
 
