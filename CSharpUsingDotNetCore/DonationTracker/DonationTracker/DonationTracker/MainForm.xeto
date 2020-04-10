@@ -1,7 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="My Eto Form" ClientSize="400, 350" Padding="10">
-    <StackLayout>
-        <Label>Some Content</Label>
+<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Donation Tracker" ClientSize="500, 450" Padding="10">
+    <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical">
+            <Label x:Name="TableTitleLabel"/>
+            <GridView x:Name="DonorsTableView" Width="300" Height="300"/>
+
+            
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="PreviousPageButton" Click="PreviousPage">Previous Page</Button>
+                <Button x:Name="NextPageButton" Click="NextPage">Next Page</Button>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical">
+            <Button Click="ShowDonorAdditionWindow">Add Donors</Button>
+            <Button Click="OnShowTableButtonClicked">Show All Donations</Button>
+            <Button Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
+            <Button Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
+            <Button Click="CalculateTotalDonationAmount">Calculate Total Donation Amount</Button>
+            <Label x:Name="TotalDonationAmountLabel"/>
+        </StackLayout>
+        
     </StackLayout>
     <Form.Menu>
         <MenuBar>

@@ -15,4 +15,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DonationTracker_ServiceLayer\DonationTracker_ServiceLayer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="DonorAdditionWindow.xeto">
+      <LogicalName>DonationTracker.Desktop.DonorAdditionWindow.xeto</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
