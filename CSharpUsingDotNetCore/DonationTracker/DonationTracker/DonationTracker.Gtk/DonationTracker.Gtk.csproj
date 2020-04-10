@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DonationTracker\DonationTracker.csproj" />
+    <ProjectReference Include="..\DonationTracker\DonationTracker.Desktop.csproj" />
   </ItemGroup>
 
   <ItemGroup>
