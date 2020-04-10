@@ -7,6 +7,10 @@
     <RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
 	
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartProgram>DonationTracker.Mac.app\Contents\MacOS\DonationTracker.Mac</StartProgram>
+    <ExternalConsole>false</ExternalConsole>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Eto.Platform.Mac64" Version="2.5.0" />
   </ItemGroup>

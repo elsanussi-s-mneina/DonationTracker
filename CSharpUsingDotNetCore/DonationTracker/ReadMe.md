@@ -10,22 +10,6 @@
 ## Troubleshooting tips
 
 
-## Problems running the DonationTracker.Mac from Visual Studio
-- Strangely, the template I used did not set the run configuration properly,
-for Mac OS.
-
-- Right-click on the DonationTracker.Mac project.
-- Select Options
-- Select Run
-- Select Configurations
-- Select Default
-- Set the Start Action to Start External Program
-- Change the textbox near "Start external program:" to
-  DonationTracker.Mac.app/Contents/MacOS/DonationTracker.Mac
-
-The reason for this is that, files ending in ".app" in MacOS are really folders,
-teh executable is somewhere within that folder.
-
 ## Problems building DonationTracker.Wpf project.
 Note: if you are building all projects in Mac OS, you will get the following error:
 
@@ -52,7 +36,7 @@ to use this as an opportunity to also change frameworks. We will see if it works
 
 ## How did you create this project?
 
-I used Visual Studio for Mac 8.5.1.
+I used Visual Studio for Mac, 8.5.2.
 I first installed the Visual Studio extension titled "Eto.Forms Support Add In".
 I got the extension from https://github.com/picoe/Eto/releases  .
 I used the file titled Eto.Addin.MonoDevelop-2.5.0.mpack , since I was on MacOS.
