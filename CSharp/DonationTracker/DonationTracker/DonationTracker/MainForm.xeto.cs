@@ -15,7 +15,6 @@ namespace DonationTracker.Desktop
         Button PreviousPageButton = null;
         Button NextPageButton = null;
 
-        bool ShowPerDonorTotalsMode = false;
         // For pagination:
         // That is for returning only a limited number of records
         int startIndex = 0;
