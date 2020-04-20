@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Eto.Forms;
-using Eto.Drawing;
+﻿using Eto.Forms;
 using Eto.Serialization.Xaml;
-using System.Collections.ObjectModel;
 
 namespace DonationTracker.Desktop
 {

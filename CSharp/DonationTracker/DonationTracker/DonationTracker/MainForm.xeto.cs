@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Eto.Forms;
-using Eto.Drawing;
 using Eto.Serialization.Xaml;
 using DonationTracker.Desktop.Model;
-using DonationTracker.Desktop;
 
 namespace DonationTracker.Desktop
 {
