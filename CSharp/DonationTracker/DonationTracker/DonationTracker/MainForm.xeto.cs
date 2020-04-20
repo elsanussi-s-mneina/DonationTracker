@@ -151,12 +151,6 @@ namespace DonationTracker.Desktop
             OnShowTableDonationPaginated(sender, e);
         }
 
-
-        protected void HandleClickMe(object sender, EventArgs e)
-        {
-            MessageBox.Show("I was clicked!");
-        }
-
         protected void HandleAbout(object sender, EventArgs e)
         {
             new AboutDialog().ShowDialog(this);
