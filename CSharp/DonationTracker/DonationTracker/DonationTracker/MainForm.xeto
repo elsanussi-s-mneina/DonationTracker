@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Donation Tracker" ClientSize="500, 450" Padding="10">
+<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Donation Tracker" ClientSize="700, 450" Padding="10">
     <StackLayout Orientation="Horizontal">
         <StackLayout Orientation="Vertical">
             <Label x:Name="TableTitleLabel"/>
-            <GridView x:Name="DonorsTableView" Width="300" Height="300"/>
+            <GridView x:Name="DonorsTableView" Width="400" Height="300"/>
 
             
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Spacing="190" Width="400">
                 <Button x:Name="PreviousPageButton" Click="PreviousPage">Previous Page</Button>
                 <Button x:Name="NextPageButton" Click="NextPage">Next Page</Button>
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" Padding="10" Spacing="20">
             <Button Click="ShowDonorAdditionWindow">Add Donors</Button>
             <Button Click="OnShowTableButtonClicked">Show All Donations</Button>
             <Button Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
