@@ -18,7 +18,7 @@ namespace DonationTracker.Desktop
         // For pagination:
         // That is for returning only a limited number of records
         int startIndex = 0;
-        int pageLength = 5;
+        int pageLength = 12;
         const string CURRENCY_SYMBOL_BEFORE = "$";
 
         public MainForm()
