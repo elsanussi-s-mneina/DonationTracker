@@ -24,6 +24,7 @@ namespace DonationTracker.Desktop
         public MainForm()
         {
             XamlReader.Load(this);
+            OnShowTableButtonClicked(this, new EventArgs());
         }
 
         protected void ShowDonorAdditionWindow(object sender, EventArgs e)
@@ -39,11 +40,14 @@ namespace DonationTracker.Desktop
             NextPageButton.Enabled = true;
             PreviousPageButton.Visible = true;
             NextPageButton.Visible = true;
+            TableTitleLabel.Text = "Donations (Page "
+               + (1 + (startIndex / pageLength)) + " ) ";
         }
 
         protected void OnShowTableButtonClicked(object sender, EventArgs e)
         {
             OnShowTable(operations.ReadAllDonors);
+            TableTitleLabel.Text = "All Donations";
             PreviousPageButton.Enabled = false;
             NextPageButton.Enabled = false;
             PreviousPageButton.Visible = false;
@@ -74,8 +78,6 @@ namespace DonationTracker.Desktop
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.DonationAmount.ToString()) },
                 HeaderText = "Amount"
             });
-
-            TableTitleLabel.Text = "Donations";
         }
 
         private string AddCurrencySymbol(decimal monetaryAmount)
