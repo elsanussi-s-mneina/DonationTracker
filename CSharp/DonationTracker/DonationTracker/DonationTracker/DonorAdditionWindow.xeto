@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Width="200" Height="400">
     <StackLayout>
-        <Label>Some Content</Label>
+        <Label>First Name:</Label> <TextBox x:Name="FirstNameTextBox" GotFocus="FirstNameGotFocus"></TextBox>
+        <Label>Last Name:</Label> <TextBox x:Name="LastNameTextBox"></TextBox>
+        <Label>Donation Amount:</Label> <TextBox x:Name="AmountTextBox"></TextBox>
+        <Label x:Name="ValidationMessage" />
+        <Button x:Name="AddInformationButton" Text="Add" Click="TryAddDonor" />
+        <Label x:Name="MostRecentlySavedLabel" />
     </StackLayout>
 </Form>

@@ -1,48 +1,85 @@
-﻿using Eto.Forms;
+﻿using System;
+using DonationTracker.Service;
+using Eto.Forms;
 using Eto.Serialization.Xaml;
 
 namespace DonationTracker.Desktop
 {
-    // This is just an example, from a sample.
-    public class MyPoco
+  public class DonorAdditionWindow : Form
+  {
+    private readonly DesktopOperations operations;
+
+
+    TextBox FirstNameTextBox = null;
+    TextBox LastNameTextBox = null;
+    TextBox AmountTextBox = null;
+
+    Label ValidationMessage = null;
+    Label MostRecentlySavedLabel = null;
+
+    public DonorAdditionWindow(DesktopOperations operations)
     {
-        public string Text { get; set; }
-        public bool Check { get; set; }
+      this.operations = operations;
+      XamlReader.Load(this);
     }
 
-    public class DonorAdditionWindow : Form
+    private void ClearValidationMessage()
     {
-        private readonly DesktopOperations operations;
+      ValidationMessage.Text = string.Empty;
+    }
 
-        public DonorAdditionWindow(DesktopOperations operations)
+    protected void FirstNameGotFocus(object sender, EventArgs e)
+    {
+      ClearValidationMessage();
+    }
+    protected void TryAddDonor(object sender, EventArgs e)
+    {
+      ClearValidationMessage();
+
+      if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text))
+      {
+        ValidationMessage.Text += "A first name is missing! You must specify the first name.\n";
+      }
+
+      if (string.IsNullOrWhiteSpace(LastNameTextBox.Text))
+      {
+        ValidationMessage.Text += "The last name is missing! You must specify the last name.\n";
+      }
+
+      if (string.IsNullOrWhiteSpace(AmountTextBox.Text))
+      {
+        ValidationMessage.Text += "An amount is missing! You must specify the amount.\n";
+      }
+      else
+      {
+        decimal amount;
+        if (decimal.TryParse(AmountTextBox.Text, out amount))
         {
-            this.operations = operations;
-            XamlReader.Load(this);
-
-			var collection = operations.ReadAllDonors();
-
-			var grid = new GridView { DataStore = collection };
-
-			grid.Columns.Add(new GridColumn
-			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.FirstName) },
-				HeaderText = "First Name"
-			});
-
-			grid.Columns.Add(new GridColumn
-			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.LastName) },
-				HeaderText = "Last Name"
-			});
-
-			grid.Columns.Add(new GridColumn
-			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.DonationAmount.ToString()) },
-				HeaderText = "Amount"
-			});
-
-			Content = grid;
-
-		}
-	}
+          try
+          {
+            operations.AddDonor(new Model.DonorDonation(
+              FirstNameTextBox.Text,
+              LastNameTextBox.Text,
+              amount
+              ));
+            ValidationMessage.Text = "Saving the donor information succeeded!";
+            MostRecentlySavedLabel.Text = "Most Recently Saved Record:\nFirst Name:" +
+               FirstNameTextBox.Text + " \nLast Name: " + LastNameTextBox.Text + " \n Amount:"
+               + amount.ToString();
+            FirstNameTextBox.Text = "";
+            LastNameTextBox.Text = "";
+            AmountTextBox.Text = "";
+          }
+          catch (ServiceLayerException)
+          {
+            ValidationMessage.Text = "Sorry, something unusual happened; saving the donor information failed!\n";
+          }
+        }
+        else
+        {
+          ValidationMessage.Text += "The amount must be a number!";
+        }
+      }
+    }
+  }
 }
