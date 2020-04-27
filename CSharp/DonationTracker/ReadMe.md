@@ -10,7 +10,7 @@
 ## Troubleshooting tips
 
 
-## Problems building DonationTracker.Wpf project.
+### Problems building DonationTracker.Wpf project.
 Note: if you are building all projects in Mac OS, you will get the following error:
 
 /usr/local/share/dotnet/sdk/3.1.201/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(5,5): Error NETSDK1073: The FrameworkReference 'Microsoft.WindowsDesktop.App' was not recognized (NETSDK1073) (DonationTracker.Wpf)
