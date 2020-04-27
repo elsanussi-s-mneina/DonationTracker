@@ -17,7 +17,7 @@
             <Button Click="OnShowTableButtonClicked">Show All Donations</Button>
             <Button Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
             <Button Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
-            <Button Click="CalculateTotalDonationAmount">Calculate Total Donation Amount</Button>
+            <Button Click="CalculateTotalDonationAmount">∑ Calculate Total Donation Amount</Button>
             <Label x:Name="TotalDonationAmountLabel"/>
         </StackLayout>
         
