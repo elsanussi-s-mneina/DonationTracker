@@ -6,9 +6,9 @@
             <GridView x:Name="DonorsTableView" Width="400" Height="300"/>
 
             
-            <StackLayout Orientation="Horizontal" Spacing="190" Width="400">
-                <Button x:Name="PreviousPageButton" Click="PreviousPage">Previous Page</Button>
-                <Button x:Name="NextPageButton" Click="NextPage">Next Page</Button>
+            <StackLayout Orientation="Horizontal" Spacing="160" Width="400">
+                <Button x:Name="PreviousPageButton" Click="PreviousPage">← Previous Page</Button>
+                <Button x:Name="NextPageButton" Click="NextPage">Next Page →</Button>
             </StackLayout>
         </StackLayout>
 
