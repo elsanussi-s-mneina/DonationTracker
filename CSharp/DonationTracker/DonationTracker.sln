@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Gtk", "Dona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Mac", "DonationTracker\DonationTracker.Mac\DonationTracker.Mac.csproj", "{A5BFEAC0-DC79-4468-B532-6CBD2D9F3F6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Wpf", "DonationTracker\DonationTracker.Wpf\DonationTracker.Wpf.csproj", "{A89D53C9-7D0A-46E9-A1A2-262205BB8DFE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB3FD074-C84D-4A80-B15E-31542CCB0B01}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.md = ReadMe.md
@@ -17,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker_ServiceLayer", "DonationTracker_ServiceLayer\DonationTracker_ServiceLayer.csproj", "{B01B983A-0E51-4FE7-9672-021CE3890E64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker_IntegrationLayer", "DonationTracker_IntegrationLayer\DonationTracker_IntegrationLayer.csproj", "{93BE7497-E4E7-4CF7-A115-E4F76731C467}"
+EndProject
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "DonationTracker.Wpf", "DonationTracker\DonationTracker.Wpf\DonationTracker.Wpf.csproj", "{EFC56E40-4E98-4236-874F-2765C600B20F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +36,6 @@ Global
 		{A5BFEAC0-DC79-4468-B532-6CBD2D9F3F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5BFEAC0-DC79-4468-B532-6CBD2D9F3F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5BFEAC0-DC79-4468-B532-6CBD2D9F3F6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A89D53C9-7D0A-46E9-A1A2-262205BB8DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A89D53C9-7D0A-46E9-A1A2-262205BB8DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A89D53C9-7D0A-46E9-A1A2-262205BB8DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A89D53C9-7D0A-46E9-A1A2-262205BB8DFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B01B983A-0E51-4FE7-9672-021CE3890E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B01B983A-0E51-4FE7-9672-021CE3890E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01B983A-0E51-4FE7-9672-021CE3890E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,5 +44,9 @@ Global
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC56E40-4E98-4236-874F-2765C600B20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC56E40-4E98-4236-874F-2765C600B20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC56E40-4E98-4236-874F-2765C600B20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC56E40-4E98-4236-874F-2765C600B20F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
