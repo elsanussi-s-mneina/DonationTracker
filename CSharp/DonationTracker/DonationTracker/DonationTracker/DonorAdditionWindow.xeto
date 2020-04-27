@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Width="200" Height="400">
-    <StackLayout>
+      Width="200" Height="400" Title="Donation Entry Form">
+    <StackLayout Padding="40">
         <Label>First Name:</Label> <TextBox x:Name="FirstNameTextBox" GotFocus="FirstNameGotFocus"></TextBox>
         <Label>Last Name:</Label> <TextBox x:Name="LastNameTextBox"></TextBox>
         <Label>Donation Amount:</Label> <TextBox x:Name="AmountTextBox"></TextBox>
