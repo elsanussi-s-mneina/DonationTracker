@@ -13,9 +13,12 @@
         </StackLayout>
 
         <StackLayout Orientation="Vertical" Padding="10" Spacing="20">
-            <Button Click="OnShowTableButtonClicked">Show All Donations</Button>
-            <Button Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
-            <Button Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
+            <Button x:Name="ShowAllDonationsButton" 
+                    Click="OnShowTableButtonClicked">Show All Donations</Button>
+            <Button x:Name="ShowDonationsPagedButton"
+                    Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
+            <Button x:Name="ShowPerDonorTotalDonationsButton"
+                    Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
             <Label x:Name="TotalDonationAmountLabel"/>
         </StackLayout>
         
@@ -23,20 +26,30 @@
     <Form.Menu>
         <MenuBar>
             <MenuBar.ApplicationItems>
-                <ButtonMenuItem Text="Preferences.." Shortcut="{On Control+O, Mac=Application+Comma}" />
+                <ButtonMenuItem x:Name="PreferencesButtonMenuItem" 
+                                Text="Preferences.." 
+                                Shortcut="{On Control+O, Mac=Application+Comma}" />
             </MenuBar.ApplicationItems>
             <MenuBar.QuitItem>
-                <ButtonMenuItem Text="Quit" Shortcut="CommonModifier+Q" Click="HandleQuit" />
+                <ButtonMenuItem x:Name="QuitButtonMenuItem" 
+                                Text="Quit" Shortcut="CommonModifier+Q" 
+                                Click="HandleQuit" />
             </MenuBar.QuitItem>
             <MenuBar.AboutItem>
-                <ButtonMenuItem Text="About..." Click="HandleAbout" />
+                <ButtonMenuItem x:Name="AboutButtonMenuItem" 
+                                Text="About..." 
+                                Click="HandleAbout" />
             </MenuBar.AboutItem>
         </MenuBar>
     </Form.Menu>
     <Form.ToolBar>
         <ToolBar>
-            <ButtonToolItem Text="✎ Add Donors…" Click="ShowDonorAdditionWindow"/>
-            <ButtonToolItem Text="∑ Calculate Total Donation Amount" Click="CalculateTotalDonationAmount"/>
+            <ButtonToolItem x:Name="AddDonorsButtonToolItem" 
+                            Text="✎ Add Donors…" 
+                            Click="ShowDonorAdditionWindow"/>
+            <ButtonToolItem x:Name="CalculateTotalDonationAmountButtonToolItem" 
+                            Text="∑ Calculate Total Donation Amount" 
+                            Click="CalculateTotalDonationAmount"/>
         </ToolBar>
     </Form.ToolBar>
 
