@@ -29,7 +29,9 @@ namespace DonationTracker.Desktop
 
         protected void ShowDonorAdditionWindow(object sender, EventArgs e)
         {
-            var window = new DonorAdditionWindow(operations);
+            var window = new DonorAdditionWindow(
+              operations,
+              new TextResources());
             window.Show();
         }
 

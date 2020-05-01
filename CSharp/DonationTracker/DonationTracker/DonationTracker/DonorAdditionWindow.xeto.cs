@@ -8,19 +8,31 @@ namespace DonationTracker.Desktop
   public class DonorAdditionWindow : Form
   {
     private readonly DesktopOperations operations;
-
+    private readonly ITextResources textResources;
 
     TextBox FirstNameTextBox = null;
     TextBox LastNameTextBox = null;
     TextBox AmountTextBox = null;
-
+    Label FirstNameLabel = null;
+    Label LastNameLabel = null;
+    Label DonationAmountLabel = null;
+    Button AddInformationButton = null;
     Label ValidationMessage = null;
     Label MostRecentlySavedLabel = null;
 
-    public DonorAdditionWindow(DesktopOperations operations)
+    public DonorAdditionWindow(
+      DesktopOperations operations,
+      ITextResources textResources)
     {
       this.operations = operations;
+      this.textResources = textResources;
       XamlReader.Load(this);
+      Title = textResources.DonorAdditionWindowTitle;
+      FirstNameLabel.Text = textResources.FirstNameLabel;
+      LastNameLabel.Text = textResources.LastNameLabel;
+      DonationAmountLabel.Text = textResources.DonationAmountLabel;
+      AddInformationButton.Text = textResources.AddInformationButton;
+
     }
 
     private void ClearValidationMessage()
@@ -38,17 +50,17 @@ namespace DonationTracker.Desktop
 
       if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text))
       {
-        ValidationMessage.Text += "A first name is missing! You must specify the first name.\n";
+        ValidationMessage.Text += textResources.FirstNameIsMissing;
       }
 
       if (string.IsNullOrWhiteSpace(LastNameTextBox.Text))
       {
-        ValidationMessage.Text += "The last name is missing! You must specify the last name.\n";
+        ValidationMessage.Text += textResources.LastNameIsMissing;
       }
 
       if (string.IsNullOrWhiteSpace(AmountTextBox.Text))
       {
-        ValidationMessage.Text += "An amount is missing! You must specify the amount.\n";
+        ValidationMessage.Text += textResources.AmountIsMissing;
       }
       else
       {
@@ -62,9 +74,12 @@ namespace DonationTracker.Desktop
               LastNameTextBox.Text,
               amount
               ));
-            ValidationMessage.Text = "Saving the donor information succeeded!";
-            MostRecentlySavedLabel.Text = "Most Recently Saved Record:\nFirst Name:" +
-               FirstNameTextBox.Text + " \nLast Name: " + LastNameTextBox.Text + " \n Amount:"
+            ValidationMessage.Text = textResources.SavingDonorInformationSucceeded;
+            MostRecentlySavedLabel.Text = textResources.MostRecentlySavedRecord
+              + "\n" + textResources.FirstNameLabel +
+               FirstNameTextBox.Text + "\n"
+               + textResources.LastNameLabel + LastNameTextBox.Text + "\n" +
+               textResources.DonationAmountLabel
                + amount.ToString();
             FirstNameTextBox.Text = "";
             LastNameTextBox.Text = "";
@@ -72,12 +87,12 @@ namespace DonationTracker.Desktop
           }
           catch (ServiceLayerException)
           {
-            ValidationMessage.Text = "Sorry, something unusual happened; saving the donor information failed!\n";
+            ValidationMessage.Text = textResources.SavingDonorInformationFailed;
           }
         }
         else
         {
-          ValidationMessage.Text += "The amount must be a number!";
+          ValidationMessage.Text += textResources.AmountMustBeANumber;
         }
       }
     }
