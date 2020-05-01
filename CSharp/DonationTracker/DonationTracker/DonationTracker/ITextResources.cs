@@ -14,5 +14,25 @@
     string MostRecentlySavedRecord { get; }
     string SavingDonorInformationFailed { get; }
     string AmountMustBeANumber { get; }
+    string DonationTrackerFormTitle { get; }
+    string PreviousPageButton { get; }
+    string NextPageButton { get; }
+    string ShowAllDonationsButton { get; }
+    string ShowDonationsPagedButton { get; }
+    string ShowPerDonorTotalDonationsButton { get; }
+    string PreferencesButtonMenuItem { get; }
+    string QuitButtonMenuItem { get; }
+    string AboutButtonMenuItem { get; }
+    string AddDonorsButtonToolItem { get; }
+    string CalculateTotalDonationAmountButtonToolItem { get; }
+    string DonationsPagePrefix { get; }
+    string DonationsPageSuffix { get; }
+    string AllDonationsTitle { get; }
+    string FirstNameHeader { get; }
+    string LastNameHeader { get; }
+    string AmountHeader { get; }
+    string TotalPrefix { get; }
+    string TotalAmountHeader { get; }
+    string TotalAmountPerDonorTitle { get; }
   }
 }

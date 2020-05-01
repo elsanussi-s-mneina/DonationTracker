@@ -30,6 +30,30 @@
 
     public string AmountMustBeANumber { get; } = "The amount must be a number!";
 
+    public string DonationTrackerFormTitle { get; } = "Donation Tracker";
+    public string PreviousPageButton { get; } = "← Previous Page";
+
+    public string NextPageButton { get; } = "Next Page →";
+    public string ShowAllDonationsButton { get; } = "Show All Donations";
+    public string ShowDonationsPagedButton { get; } = "Show Donations (One page at a time)";
+    public string ShowPerDonorTotalDonationsButton { get; } = "Show Per Donor Total Donations";
+
+    public string PreferencesButtonMenuItem { get; } = "Preferences..";
+    public string QuitButtonMenuItem { get; } = "Quit";
+    public string AboutButtonMenuItem { get; } = "About...";
+    public string AddDonorsButtonToolItem { get; } = "✎ Add Donors…";
+    public string CalculateTotalDonationAmountButtonToolItem { get; } = "∑ Calculate Total Donation Amount";
+
+    public string DonationsPagePrefix { get; } = "Donations (Page ";
+    public string DonationsPageSuffix { get; } = " ) ";
+    public string AllDonationsTitle { get; } = "All Donations";
+    public string FirstNameHeader { get; } = "First Name";
+    public string LastNameHeader { get; } = "Last Name";
+    public string AmountHeader { get; } = "Amount";
+    public string TotalPrefix { get; } = "Total: ";
+    public string TotalAmountHeader { get; } = "Total Amount";
+    public string TotalAmountPerDonorTitle { get; } = "Donation Total Amount Per Donor";
+
 
   }
 }

@@ -9,11 +9,18 @@ namespace DonationTracker.Desktop
     public partial class MainForm : Form
     {
         private readonly DesktopOperations operations = new DesktopOperations();
+        private readonly ITextResources textResources = new TextResources();
         Label TotalDonationAmountLabel = null;
         Label TableTitleLabel = null;
         GridView DonorsTableView = null;
         Button PreviousPageButton = null;
         Button NextPageButton = null;
+        Button ShowAllDonationsButton = null;
+        Button ShowDonationsPagedButton = null;
+        Button ShowPerDonorTotalDonationsButton = null;
+        ButtonMenuItem PreferencesButtonMenuItem = null;
+        ButtonMenuItem QuitButtonMenuItem = null;
+        ButtonMenuItem AboutButtonMenuItem = null;
 
         // For pagination:
         // That is for returning only a limited number of records
@@ -24,6 +31,15 @@ namespace DonationTracker.Desktop
         public MainForm()
         {
             XamlReader.Load(this);
+            Title = textResources.DonationTrackerFormTitle;
+            PreviousPageButton.Text = textResources.PreviousPageButton;
+            NextPageButton.Text = textResources.NextPageButton;
+            ShowAllDonationsButton.Text = textResources.ShowAllDonationsButton;
+            ShowDonationsPagedButton.Text = textResources.ShowDonationsPagedButton;
+            ShowPerDonorTotalDonationsButton.Text = textResources.ShowPerDonorTotalDonationsButton;
+            PreferencesButtonMenuItem.Text = textResources.PreferencesButtonMenuItem;
+            QuitButtonMenuItem.Text = textResources.QuitButtonMenuItem;
+            AboutButtonMenuItem.Text = textResources.AboutButtonMenuItem;
             OnShowTableButtonClicked(this, new EventArgs());
         }
 
@@ -31,7 +47,7 @@ namespace DonationTracker.Desktop
         {
             var window = new DonorAdditionWindow(
               operations,
-              new TextResources());
+              textResources);
             window.Show();
         }
 
@@ -42,14 +58,15 @@ namespace DonationTracker.Desktop
             NextPageButton.Enabled = true;
             PreviousPageButton.Visible = true;
             NextPageButton.Visible = true;
-            TableTitleLabel.Text = "Donations (Page "
-               + (1 + (startIndex / pageLength)) + " ) ";
+            TableTitleLabel.Text = textResources.DonationsPagePrefix 
+               + (1 + (startIndex / pageLength))
+               + textResources.DonationsPageSuffix;
         }
 
         protected void OnShowTableButtonClicked(object sender, EventArgs e)
         {
             OnShowTable(operations.ReadAllDonors);
-            TableTitleLabel.Text = "All Donations";
+            TableTitleLabel.Text = textResources.AllDonationsTitle;
             PreviousPageButton.Enabled = false;
             NextPageButton.Enabled = false;
             PreviousPageButton.Visible = false;
@@ -66,19 +83,19 @@ namespace DonationTracker.Desktop
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.FirstName) },
-                HeaderText = "First Name"
+                HeaderText = textResources.FirstNameHeader
             });
 
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.LastName) },
-                HeaderText = "Last Name"
+                HeaderText = textResources.LastNameHeader
             });
 
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonation, string>(r => r.DonationAmount.ToString()) },
-                HeaderText = "Amount"
+                HeaderText = textResources.AmountHeader
             });
         }
 
@@ -90,7 +107,7 @@ namespace DonationTracker.Desktop
         protected void CalculateTotalDonationAmount(object sender, EventArgs e)
         {
             decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
-            TotalDonationAmountLabel.Text = "Total: "
+            TotalDonationAmountLabel.Text = textResources.TotalPrefix
                   + AddCurrencySymbol(totalDonationAmount);
         }
 
@@ -120,22 +137,22 @@ namespace DonationTracker.Desktop
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.FirstName) },
-                HeaderText = "First Name"
+                HeaderText = textResources.FirstNameHeader
             });
 
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.LastName) },
-                HeaderText = "Last Name"
+                HeaderText = textResources.LastNameHeader
             });
 
             DonorsTableView.Columns.Add(new GridColumn
             {
                 DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.TotalDonationAmount.ToString()) },
-                HeaderText = "Total Amount"
+                HeaderText = textResources.TotalAmountHeader
             });
 
-            TableTitleLabel.Text = "Donation Total Amount Per Donor";
+            TableTitleLabel.Text = textResources.TotalAmountPerDonorTitle;
         }
 
         protected void NextPage(object sender, EventArgs e)
