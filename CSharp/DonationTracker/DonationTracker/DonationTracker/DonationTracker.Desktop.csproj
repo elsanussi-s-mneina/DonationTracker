@@ -11,8 +11,14 @@
   
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="internationalization\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DonationTracker_ServiceLayer\DonationTracker_ServiceLayer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="internationalization\en_US.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

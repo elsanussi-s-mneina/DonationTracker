@@ -9,7 +9,8 @@ namespace DonationTracker.Mac
         [STAThread]
         public static void Main(string[] args)
         {
-            new Application(Eto.Platforms.Mac64).Run(new MainForm());
+            new Application(Eto.Platforms.Mac64).Run(
+                new MainForm());
         }
     }
 }

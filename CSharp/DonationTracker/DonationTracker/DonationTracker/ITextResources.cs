@@ -1,4 +1,6 @@
-﻿namespace DonationTracker.Desktop
+﻿using System.Collections.Generic;
+
+namespace DonationTracker.Desktop
 {
   public interface ITextResources
   {
@@ -34,5 +36,6 @@
     string TotalPrefix { get; }
     string TotalAmountHeader { get; }
     string TotalAmountPerDonorTitle { get; }
+    IEnumerable<string> AsLines { get; }
   }
 }

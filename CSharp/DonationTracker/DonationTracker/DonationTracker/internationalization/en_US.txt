@@ -1,0 +1,32 @@
+First Name:
+Last Name:
+Donation Amount:
+Add
+Donation Entry Form
+A first name is missing! You must specify the first name.
+The last name is missing! You must specify the last name.
+An amount is missing! You must specify the amount.
+Saving the donor information succeeded!
+Most Recently Saved Record:
+Sorry, something unusual happened; saving the donor information failed!
+The amount must be a number!
+The Donation Tracker
+← Previous Page
+Next Page →
+Show All Donations
+Show Donations (One page at a time)
+Show Per Donor Total Donations
+Preferences..
+Quit
+About...
+✎ Add Donors…
+∑ Calculate Total Donation Amount
+Donations (Page 
+ ) 
+All Donations
+First Name
+Last Name
+Amount
+Total: 
+Total Amount
+Donation Total Amount Per Donor
