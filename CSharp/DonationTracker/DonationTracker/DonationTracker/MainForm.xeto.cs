@@ -8,8 +8,8 @@ namespace DonationTracker.Desktop
 {
     public partial class MainForm : Form
     {
-        private readonly DesktopOperations operations = new DesktopOperations();
-        private readonly ITextResources textResources = new TextResources();
+        private readonly DesktopOperations operations;
+        private readonly ITextResources textResources;
         Label TotalDonationAmountLabel = null;
         Label TableTitleLabel = null;
         GridView DonorsTableView = null;
@@ -28,11 +28,23 @@ namespace DonationTracker.Desktop
         int pageLength = 12;
         const string CURRENCY_SYMBOL_BEFORE = "$";
 
-        public MainForm()
+        public MainForm(
+          DesktopOperations operations,
+          ITextResources textResources
+          )
         {
+          this.operations = operations;
+          this.textResources = textResources;
+
           XamlReader.Load(this);
           ApplyTextResources();
           OnShowTableButtonClicked(this, new EventArgs());
+        }
+
+        public MainForm() : this(
+                               new DesktopOperations(),
+                               new TextResources())
+        {
         }
 
         private void ApplyTextResources()
