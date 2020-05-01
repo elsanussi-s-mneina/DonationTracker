@@ -27,12 +27,16 @@ namespace DonationTracker.Desktop
       this.operations = operations;
       this.textResources = textResources;
       XamlReader.Load(this);
+      ApplyTextResources();
+    }
+
+    private void ApplyTextResources()
+    {
       Title = textResources.DonorAdditionWindowTitle;
       FirstNameLabel.Text = textResources.FirstNameLabel;
       LastNameLabel.Text = textResources.LastNameLabel;
       DonationAmountLabel.Text = textResources.DonationAmountLabel;
       AddInformationButton.Text = textResources.AddInformationButton;
-
     }
 
     private void ClearValidationMessage()

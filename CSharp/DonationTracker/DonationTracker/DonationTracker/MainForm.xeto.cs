@@ -30,17 +30,22 @@ namespace DonationTracker.Desktop
 
         public MainForm()
         {
-            XamlReader.Load(this);
-            Title = textResources.DonationTrackerFormTitle;
-            PreviousPageButton.Text = textResources.PreviousPageButton;
-            NextPageButton.Text = textResources.NextPageButton;
-            ShowAllDonationsButton.Text = textResources.ShowAllDonationsButton;
-            ShowDonationsPagedButton.Text = textResources.ShowDonationsPagedButton;
-            ShowPerDonorTotalDonationsButton.Text = textResources.ShowPerDonorTotalDonationsButton;
-            PreferencesButtonMenuItem.Text = textResources.PreferencesButtonMenuItem;
-            QuitButtonMenuItem.Text = textResources.QuitButtonMenuItem;
-            AboutButtonMenuItem.Text = textResources.AboutButtonMenuItem;
-            OnShowTableButtonClicked(this, new EventArgs());
+          XamlReader.Load(this);
+          ApplyTextResources();
+          OnShowTableButtonClicked(this, new EventArgs());
+        }
+
+        private void ApplyTextResources()
+        {
+          Title = textResources.DonationTrackerFormTitle;
+          PreviousPageButton.Text = textResources.PreviousPageButton;
+          NextPageButton.Text = textResources.NextPageButton;
+          ShowAllDonationsButton.Text = textResources.ShowAllDonationsButton;
+          ShowDonationsPagedButton.Text = textResources.ShowDonationsPagedButton;
+          ShowPerDonorTotalDonationsButton.Text = textResources.ShowPerDonorTotalDonationsButton;
+          PreferencesButtonMenuItem.Text = textResources.PreferencesButtonMenuItem;
+          QuitButtonMenuItem.Text = textResources.QuitButtonMenuItem;
+          AboutButtonMenuItem.Text = textResources.AboutButtonMenuItem;
         }
 
         protected void ShowDonorAdditionWindow(object sender, EventArgs e)
