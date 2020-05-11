@@ -9,7 +9,8 @@ namespace DonationTracker.Gtk
         [STAThread]
         public static void Main(string[] args)
         {
-            new Application(Eto.Platforms.Gtk).Run(new MainForm());
+            new Application(Eto.Platforms.Gtk).Run(
+                 new MainHelper().ConstructUsualMainForm());
         }
     }
 }

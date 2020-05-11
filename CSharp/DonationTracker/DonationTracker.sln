@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker_ServiceLaye
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker_IntegrationLayer", "DonationTracker_IntegrationLayer\DonationTracker_IntegrationLayer.csproj", "{93BE7497-E4E7-4CF7-A115-E4F76731C467}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "DonationTracker.Wpf", "DonationTracker\DonationTracker.Wpf\DonationTracker.Wpf.csproj", "{EFC56E40-4E98-4236-874F-2765C600B20F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationTracker.Wpf", "DonationTracker\DonationTracker.Wpf\DonationTracker.Wpf.csproj", "{F008AE6D-C4D9-43BE-A48F-9ECC9516838F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +44,9 @@ Global
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93BE7497-E4E7-4CF7-A115-E4F76731C467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFC56E40-4E98-4236-874F-2765C600B20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFC56E40-4E98-4236-874F-2765C600B20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFC56E40-4E98-4236-874F-2765C600B20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFC56E40-4E98-4236-874F-2765C600B20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F008AE6D-C4D9-43BE-A48F-9ECC9516838F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F008AE6D-C4D9-43BE-A48F-9ECC9516838F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F008AE6D-C4D9-43BE-A48F-9ECC9516838F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F008AE6D-C4D9-43BE-A48F-9ECC9516838F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

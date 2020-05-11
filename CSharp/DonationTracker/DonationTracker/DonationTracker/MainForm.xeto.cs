@@ -37,23 +37,9 @@ namespace DonationTracker.Desktop
           this.textResources = textResources;
 
           XamlReader.Load(this);
-          var textResourcesPersistence = new TextResourcesPersistence();
-          textResourcesPersistence.SetupInternationalizationDirectory();
 
           ApplyTextResources();
           OnShowTableButtonClicked(this, new EventArgs());
-        }
-
-        public MainForm(DesktopOperations operations, string locale) :
-          this(operations,
-               new TextResourcesPersistence().ReadLocale(locale))
-        {
-        }
-
-        public MainForm() : this(
-                               new DesktopOperations(),
-                               new TextResources())
-        {
         }
 
         private void ApplyTextResources()

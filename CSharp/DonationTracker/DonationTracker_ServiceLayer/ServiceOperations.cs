@@ -1,28 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using DonationTracker.Integration;
 namespace DonationTracker.Service
 {
     public class ServiceOperations
     {
         private readonly IntegrationOperations operations;
+        private readonly IMapper mapper;
 
         public ServiceOperations()
         {
             operations = new IntegrationOperations();
+            mapper = SetupObjectToObjectMappings(); 
+        }
+
+        public IMapper SetupObjectToObjectMappings()
+        {
+          var configuration = new MapperConfiguration(cfg => 
+          {
+              cfg.CreateMap<Integration.DonorDonation, Service.DonorDonation>();
+              cfg.CreateMap<Service.DonorDonation, Integration.DonorDonation>();
+              cfg.CreateMap<Integration.DonorDonationTotalByDonor, Service.DonorDonationTotalByDonor>();
+              cfg.CreateMap<Integration.DonorQuery, Service.DonorQuery>();
+          });
+
+          // only during development, validate your mappings; remove it before release
+          configuration.AssertConfigurationIsValid();
+
+          var mapper = configuration.CreateMapper();
+          return mapper;
         }
 
         public void AddDonor(DonorDonation donation)
         {
             try
             {
-                var donation2 = new Integration.DonorDonation
-                (
-                    firstName: donation.FirstName,
-                    lastName: donation.LastName,
-                    donationAmount: donation.DonationAmount
-                );
-
+                var donation2 =
+                  mapper.Map<Service.DonorDonation, Integration.DonorDonation>
+                    (donation);
                 operations.AddDonor(donation2);
             }
             catch (IntegrationLayerException exception)
@@ -37,19 +53,10 @@ namespace DonationTracker.Service
 
         private IList<DonorDonation> ConvertDonorDonationsFrom(IList<Integration.DonorDonation> donorDonationsIn)
         {
-            IList<DonorDonation> donorDonationsOut = new List<DonorDonation>();
-
-            foreach (var donorDonation in donorDonationsIn)
-            {
-                var current = new DonorDonation
-                (
-                    firstName: donorDonation.FirstName,
-                    lastName: donorDonation.LastName,
-                    donationAmount: donorDonation.DonationAmount
-                );
-                donorDonationsOut.Add(current);
-            }
-
+            IList<DonorDonation> donorDonationsOut =
+              mapper.Map<IList<Integration.DonorDonation>,
+                         IList<Service.DonorDonation>>
+                     (donorDonationsIn);
             return donorDonationsOut;
         }
 
@@ -73,35 +80,20 @@ namespace DonationTracker.Service
 
         public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
         {
-            IList<DonorDonationTotalByDonor> donorDonations = new List<DonorDonationTotalByDonor>();
-
             IList<Integration.DonorDonationTotalByDonor> donorDonations2 =
                 operations.CalculatePerDonorTotalDonationAmount();
 
-            foreach (var donorDonation in donorDonations2)
-            {
-                var current = new DonorDonationTotalByDonor
-                (
-                    firstName: donorDonation.FirstName,
-                    lastName: donorDonation.LastName,
-                    totalDonationAmount: donorDonation.TotalDonationAmount
-                );
-
-
-                donorDonations.Add(current);
-            }
-
+            IList<DonorDonationTotalByDonor> donorDonations =
+              mapper.Map<IList<Integration.DonorDonationTotalByDonor>,
+                         IList<Service.DonorDonationTotalByDonor>>
+                         (donorDonations2);
             return donorDonations;
         }
 
         public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
         {
-
-            var donorQuery2 = new Integration.DonorQuery
-            (
-                donorQuery.FirstName,
-                donorQuery.LastName
-            );
+            var donorQuery2 =
+            mapper.Map<Service.DonorQuery, Integration.DonorQuery>(donorQuery);
 
             return operations.GetIDOfMatchingDonor(donorQuery2);
         }

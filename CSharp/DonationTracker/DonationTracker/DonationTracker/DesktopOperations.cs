@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using DonationTracker.Service;
 
 namespace DonationTracker.Desktop
@@ -6,21 +7,19 @@ namespace DonationTracker.Desktop
     public class DesktopOperations
     {
         private readonly ServiceOperations donationService;
+        private readonly IMapper mapper;
 
-        public DesktopOperations()
+        public DesktopOperations(IMapper mapper)
         {
             donationService = new ServiceOperations();
+            this.mapper = mapper;
         }
 
         public void AddDonor(Desktop.Model.DonorDonation donation)
         {
-            var sDonation = new Service.DonorDonation
-            (
-                firstName: donation.FirstName,
-                lastName: donation.LastName,
-                donationAmount: donation.DonationAmount
-            );
-
+            Service.DonorDonation sDonation
+               = mapper.Map<Desktop.Model.DonorDonation
+                           ,Service.DonorDonation>(donation);
             donationService.AddDonor(sDonation);
         }
 
@@ -29,20 +28,8 @@ namespace DonationTracker.Desktop
         {
 
             IList<Desktop.Model.DonorDonation> donorDonationsOut =
-                new List<Desktop.Model.DonorDonation>();
-
-            foreach (DonorDonation d in donorDonationsIn)
-            {
-                Desktop.Model.DonorDonation d2 = new Model.DonorDonation
-                (
-                    firstName: d.FirstName,
-                    lastName: d.LastName,
-                    donationAmount: d.DonationAmount
-                );
-
-                donorDonationsOut.Add(d2);
-            }
-
+              mapper.Map<IList<Service.DonorDonation>
+                        , IList<Desktop.Model.DonorDonation>>(donorDonationsIn);
             return donorDonationsOut;
         }
 
@@ -70,19 +57,9 @@ namespace DonationTracker.Desktop
 
             IList<Desktop.Model.DonorDonationTotalByDonor> donorDonations2 =
                 new List<Desktop.Model.DonorDonationTotalByDonor>();
-
-            foreach (DonorDonationTotalByDonor d in donorDonations1)
-            {
-                Desktop.Model.DonorDonationTotalByDonor d2 = new Model.DonorDonationTotalByDonor
-                (
-                    firstName: d.FirstName,
-                    lastName: d.LastName,
-                    totalDonationAmount: d.TotalDonationAmount
-                );
-
-                donorDonations2.Add(d2);
-            }
-
+            donorDonations2 = mapper.Map<
+                 IList<DonorDonationTotalByDonor>
+               , IList<Desktop.Model.DonorDonationTotalByDonor>>(donorDonations1);
             return donorDonations2;
         }
 

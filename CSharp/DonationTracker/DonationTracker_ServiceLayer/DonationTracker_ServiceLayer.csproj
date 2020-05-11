@@ -11,4 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DonationTracker_IntegrationLayer\DonationTracker_IntegrationLayer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
 </Project>
