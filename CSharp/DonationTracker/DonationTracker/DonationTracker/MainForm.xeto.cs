@@ -39,7 +39,6 @@ namespace DonationTracker.Desktop
           XamlReader.Load(this);
 
           ApplyTextResources();
-          OnShowTableButtonClicked(this, new EventArgs());
         }
 
         private void ApplyTextResources()
