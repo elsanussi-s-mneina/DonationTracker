@@ -72,6 +72,11 @@ namespace DonationTracker.Desktop
             TableTitleLabel.Text = textResources.DonationsPagePrefix 
                + (1 + (startIndex / pageLength))
                + textResources.DonationsPageSuffix;
+
+            if (startIndex < pageLength)
+            {
+                PreviousPageButton.Enabled = false;
+            }
         }
 
         protected void OnShowTableButtonClicked(object sender, EventArgs e)
@@ -170,6 +175,7 @@ namespace DonationTracker.Desktop
         {
             startIndex += pageLength;
             OnShowTableDonationPaginated(sender, e);
+            PreviousPageButton.Enabled = true;
         }
 
         protected void PreviousPage(object sender, EventArgs e)
@@ -178,8 +184,12 @@ namespace DonationTracker.Desktop
             if (startIndex < 0)
             {
                 startIndex = 0;
+                PreviousPageButton.Enabled = false;
             }
-
+            else
+            {
+                NextPageButton.Enabled = true;
+            }
             OnShowTableDonationPaginated(sender, e);
         }
 
