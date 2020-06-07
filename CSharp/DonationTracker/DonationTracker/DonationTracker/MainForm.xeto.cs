@@ -37,6 +37,8 @@ namespace DonationTracker.Desktop
           this.textResources = textResources;
 
           XamlReader.Load(this);
+          PreviousPageButton.Visible = false;
+          NextPageButton.Visible = false;
 
           ApplyTextResources();
         }
@@ -77,6 +79,8 @@ namespace DonationTracker.Desktop
             {
                 PreviousPageButton.Enabled = false;
             }
+            PreviousPageButton.Visible = true;
+            NextPageButton.Visible = true;
         }
 
         protected void OnShowTableButtonClicked(object sender, EventArgs e)
