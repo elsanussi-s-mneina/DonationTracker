@@ -1,4 +1,4 @@
-﻿# Donation Tracker
+# Donation Tracker
 
 ## Framework
 - .Net Core
@@ -6,9 +6,11 @@
 
 
 
-
 ## Troubleshooting tips
 
+
+### How to deal with Nuget packages need to be restored before building.
+- Right-click on solution, and select Restore NuGet Packages.
 
 ### Problems building DonationTracker.Wpf project.
 Note: if you are building all projects in Mac OS, you will get the following error:
