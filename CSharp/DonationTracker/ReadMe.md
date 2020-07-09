@@ -4,6 +4,18 @@
 - .Net Core
 
 
+## Setup:
+- You need PostgreSQL to run the database part.
+Although the Program will start without it, nothing will function, and if you click
+any button it will crash.
+
+You must setup the database by running both SQL scripts:
+  - DatabaseSetup1.sql
+  - DatabaseSetup2.sql
+
+These two scripts are contained in the DonationTracker_IntegrationLayer directory.
+
+
 
 
 ## Troubleshooting tips
