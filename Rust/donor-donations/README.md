@@ -1,6 +1,5 @@
 # Donor Donations (in Rust)
 
-So far, this just shows a window showing Hello world.
 
 
 ## Requirements (for Developer)
