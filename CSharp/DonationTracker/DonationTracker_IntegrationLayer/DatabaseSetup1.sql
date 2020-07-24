@@ -1,11 +1,14 @@
-﻿-- A PostgreSQL script for creating the database, the table,
+-- A PostgreSQL script for creating the database, the table,
 -- and the user.
 
 
 
 -- From postgres database, run the following two statements.
 -- OR just
--- run the following command
+-- run the following commands
+-- If you haven't started the PostgreSQL server do so. This
+-- can be done by running the following one-line command:
+-- pg_ctl -D /usr/local/var/postgres start
 -- psql -f DatabaseSetup1.sql postgres
 
 
