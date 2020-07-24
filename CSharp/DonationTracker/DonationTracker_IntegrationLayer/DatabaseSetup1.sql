@@ -3,9 +3,9 @@
 
 
 
--- From postgres database, run the following two statements.
+-- From postgres database, run the following three SQL statements.
 -- OR just
--- run the following commands
+-- run the following terminal commands
 -- If you haven't started the PostgreSQL server do so. This
 -- can be done by running the following one-line command:
 -- pg_ctl -D /usr/local/var/postgres start
