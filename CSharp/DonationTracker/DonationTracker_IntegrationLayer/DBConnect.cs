@@ -13,16 +13,8 @@ namespace DonationTracker.Integration
         private string uid;
         private string password;
 
-        public DBConnect()
+        public DBConnect(string connectionString)
         {
-            server = "localhost";
-            database = "donation_tracking";
-            uid = "donation_tracker_user";
-            password = "secret1secret";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
             connection = new NpgsqlConnection(connectionString);
         }
 

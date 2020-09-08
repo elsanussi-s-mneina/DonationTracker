@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DonationTracker.Desktop.Model;
 using DonationTracker.Integration;
 using DonationTracker.Service;
 
@@ -16,14 +15,27 @@ namespace DonationTracker.Desktop
             return ConstructLocalizedMainForm("en_US");
         }
 
+        private string GetConnectionString()
+        {
+            string server = "localhost";
+            string database = "donation_tracking";
+            string uid = "donation_tracker_user";
+            string password = "secret1secret";
+            return "SERVER=" + server + ";" + "DATABASE=" +
+                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+        }
+
         public MainForm ConstructLocalizedMainForm(string locale)
         {
             IMapper ooMapper = SetupObjectToObjectMappings();
+
+            string connectionString = GetConnectionString();
             return new MainForm(
                         new DesktopOperations
                         (new ServiceOperations
                         (new IntegrationOperations
-                        (new DBConnect())), ooMapper),
+                        (new DBConnect(connectionString))), ooMapper),
                         new TextResourcesPersistence().ReadLocale(locale));
         }
 
