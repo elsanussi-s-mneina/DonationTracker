@@ -8,10 +8,6 @@ namespace DonationTracker.Integration
     public class DBConnect : IDBConnect
     {
         private readonly NpgsqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string password;
 
         public DBConnect(string connectionString)
         {
