@@ -7,9 +7,9 @@ namespace DonationTracker.Integration
     {
         DBConnect databaseBridge;
 
-        public IntegrationOperations()
+        public IntegrationOperations(DBConnect databaseBridge)
         {
-            databaseBridge = new DBConnect();
+            this.databaseBridge = databaseBridge;
         }
 
         public void AddDonor(DonorDonation donation)

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DonationTracker.Desktop.Model;
+using DonationTracker.Integration;
+using DonationTracker.Service;
 
 namespace DonationTracker.Desktop
 {
@@ -18,7 +20,10 @@ namespace DonationTracker.Desktop
     {
       IMapper ooMapper = SetupObjectToObjectMappings();
       return new MainForm(
-                  new DesktopOperations(ooMapper),
+                  new DesktopOperations
+                  (new ServiceOperations
+                  (new IntegrationOperations
+                  (new DBConnect())), ooMapper),
                   new TextResourcesPersistence().ReadLocale(locale));
     }
 

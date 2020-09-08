@@ -9,9 +9,11 @@ namespace DonationTracker.Desktop
         private readonly ServiceOperations donationService;
         private readonly IMapper mapper;
 
-        public DesktopOperations(IMapper mapper)
+        public DesktopOperations(
+            ServiceOperations donationService,
+            IMapper mapper)
         {
-            donationService = new ServiceOperations();
+            this.donationService = donationService;
             this.mapper = mapper;
         }
 

@@ -9,9 +9,8 @@ namespace DonationTracker.Service
         private readonly IntegrationOperations operations;
         private readonly IMapper mapper;
 
-        public ServiceOperations()
+        public ServiceOperations(IntegrationOperations operations)
         {
-            operations = new IntegrationOperations();
             mapper = SetupObjectToObjectMappings(); 
         }
 
