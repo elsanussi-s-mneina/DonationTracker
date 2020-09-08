@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DonationTracker.Integration
 {
-    public class IntegrationOperations
+    public class IntegrationOperations : IIntegrationOperations
     {
-        DBConnect databaseBridge;
+        IDBConnect databaseBridge;
 
-        public IntegrationOperations(DBConnect databaseBridge)
+        public IntegrationOperations(IDBConnect databaseBridge)
         {
             this.databaseBridge = databaseBridge;
         }

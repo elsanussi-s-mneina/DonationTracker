@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Npgsql;
+
+using System;
 using System.Collections.Generic;
-using Npgsql;
 
 namespace DonationTracker.Integration
 {
-    public class DBConnect
+    public class DBConnect : IDBConnect
     {
         private readonly NpgsqlConnection connection;
         private string server;
@@ -25,7 +26,7 @@ namespace DonationTracker.Integration
             connection = new NpgsqlConnection(connectionString);
         }
 
-        internal decimal CalculateTotalDonationAmount()
+        public decimal CalculateTotalDonationAmount()
         {
             decimal total = 0;
             if (OpenConnection())
@@ -50,7 +51,7 @@ namespace DonationTracker.Integration
             return total;
         }
 
-        internal int? GetIDOfMatchingDonor(DonorQuery donorQuery)
+        public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
         {
             int? id = null;
             if (OpenConnection())
@@ -85,7 +86,7 @@ namespace DonationTracker.Integration
             return id;
         }
 
-        internal IList<DonorDonation> ReadAllDonors()
+        public IList<DonorDonation> ReadAllDonors()
         {
 
             IList<DonorDonation> donorDonations = new List<DonorDonation>();
@@ -127,7 +128,7 @@ namespace DonationTracker.Integration
 
         }
 
-        internal IList<DonorDonation> ReadAllDonorsPagination(int offset, int limit)
+        public IList<DonorDonation> ReadAllDonorsPagination(int offset, int limit)
         {
             IList<DonorDonation> donorDonations = new List<DonorDonation>();
 
@@ -254,7 +255,7 @@ namespace DonationTracker.Integration
             int? id = GetIDOfMatchingDonor(
                      new DonorQuery(donation.FirstName, donation.LastName));
 
-      
+
             if (id == null && OpenConnection())
             {
                 NpgsqlCommand insertCommand = new NpgsqlCommand();

@@ -4,13 +4,13 @@ using DonationTracker.Service;
 
 namespace DonationTracker.Desktop
 {
-    public class DesktopOperations
+    public class DesktopOperations : IDesktopOperations
     {
-        private readonly ServiceOperations donationService;
+        private readonly IServiceOperations donationService;
         private readonly IMapper mapper;
 
         public DesktopOperations(
-            ServiceOperations donationService,
+            IServiceOperations donationService,
             IMapper mapper)
         {
             this.donationService = donationService;
@@ -21,7 +21,7 @@ namespace DonationTracker.Desktop
         {
             Service.DonorDonation sDonation
                = mapper.Map<Desktop.Model.DonorDonation
-                           ,Service.DonorDonation>(donation);
+                           , Service.DonorDonation>(donation);
             donationService.AddDonor(sDonation);
         }
 

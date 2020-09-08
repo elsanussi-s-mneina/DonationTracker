@@ -4,31 +4,32 @@ using AutoMapper;
 using DonationTracker.Integration;
 namespace DonationTracker.Service
 {
-    public class ServiceOperations
+    public class ServiceOperations : IServiceOperations
     {
-        private readonly IntegrationOperations operations;
+        private readonly IIntegrationOperations operations;
         private readonly IMapper mapper;
 
-        public ServiceOperations(IntegrationOperations operations)
+        public ServiceOperations(IIntegrationOperations operations)
         {
-            mapper = SetupObjectToObjectMappings(); 
+            this.operations = operations;
+            mapper = SetupObjectToObjectMappings();
         }
 
         public IMapper SetupObjectToObjectMappings()
         {
-          var configuration = new MapperConfiguration(cfg => 
-          {
-              cfg.CreateMap<Integration.DonorDonation, Service.DonorDonation>();
-              cfg.CreateMap<Service.DonorDonation, Integration.DonorDonation>();
-              cfg.CreateMap<Integration.DonorDonationTotalByDonor, Service.DonorDonationTotalByDonor>();
-              cfg.CreateMap<Integration.DonorQuery, Service.DonorQuery>();
-          });
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Integration.DonorDonation, Service.DonorDonation>();
+                cfg.CreateMap<Service.DonorDonation, Integration.DonorDonation>();
+                cfg.CreateMap<Integration.DonorDonationTotalByDonor, Service.DonorDonationTotalByDonor>();
+                cfg.CreateMap<Integration.DonorQuery, Service.DonorQuery>();
+            });
 
-          // only during development, validate your mappings; remove it before release
-          configuration.AssertConfigurationIsValid();
+            // only during development, validate your mappings; remove it before release
+            configuration.AssertConfigurationIsValid();
 
-          var mapper = configuration.CreateMapper();
-          return mapper;
+            var mapper = configuration.CreateMapper();
+            return mapper;
         }
 
         public void AddDonor(DonorDonation donation)

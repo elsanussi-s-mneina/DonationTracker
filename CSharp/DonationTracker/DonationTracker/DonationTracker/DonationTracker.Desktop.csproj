@@ -13,6 +13,7 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="internationalization\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DonationTracker_ServiceLayer\DonationTracker_ServiceLayer.csproj" />
