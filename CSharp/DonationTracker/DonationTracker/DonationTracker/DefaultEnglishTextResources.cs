@@ -2,10 +2,43 @@
 
 namespace DonationTracker.Desktop
 {
-  public class DefaultEnglishTextResources : ITextResources
+  public class TextResources : ITextResources
   {
-    public DefaultEnglishTextResources()
+    public TextResources(string[] lines)
     {
+      int i = 0;
+      FirstNameLabel = lines[i++];
+      LastNameLabel = lines[i++];
+      DonationAmountLabel = lines[i++];
+      AddInformationButton = lines[i++];
+      DonorAdditionWindowTitle = lines[i++];
+      FirstNameIsMissing = lines[i++];
+      LastNameIsMissing = lines[i++];
+      AmountIsMissing = lines[i++];
+      SavingDonorInformationSucceeded = lines[i++];
+      MostRecentlySavedRecord = lines[i++];
+      SavingDonorInformationFailed = lines[i++];
+      AmountMustBeANumber = lines[i++];
+      DonationTrackerFormTitle = lines[i++];
+      PreviousPageButton = lines[i++];
+      NextPageButton = lines[i++];
+      ShowAllDonationsButton = lines[i++];
+      ShowDonationsPagedButton = lines[i++];
+      ShowPerDonorTotalDonationsButton = lines[i++];
+      PreferencesButtonMenuItem = lines[i++];
+      QuitButtonMenuItem = lines[i++];
+      AboutButtonMenuItem = lines[i++];
+      AddDonorsButtonToolItem = lines[i++];
+      CalculateTotalDonationAmountButtonToolItem = lines[i++];
+      DonationsPagePrefix = lines[i++];
+      DonationsPageSuffix = lines[i++];
+      AllDonationsTitle = lines[i++];
+      FirstNameHeader = lines[i++];
+      LastNameHeader = lines[i++];
+      AmountHeader = lines[i++];
+      TotalPrefix = lines[i++];
+      TotalAmountHeader = lines[i++];
+      TotalAmountPerDonorTitle = lines[i++]; 
     }
 
     public string FirstNameLabel { get; } = "First Name:";

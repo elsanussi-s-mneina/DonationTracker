@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using DonationTracker.Integration;
 using DonationTracker.Service;
+using SimpleInjector;
 
 namespace DonationTracker.Desktop
 {
     public class MainHelper : IMainHelper
     {
-        public MainHelper()
-        {
-        }
+         Container container;
 
         public MainForm ConstructUsualMainForm()
         {
@@ -30,13 +29,28 @@ namespace DonationTracker.Desktop
         {
             IMapper ooMapper = SetupObjectToObjectMappings();
 
-            string connectionString = GetConnectionString();
+            container = new Container();
+            container.Register<IDesktopOperations, DesktopOperations>(
+                Lifestyle.Singleton);
+            container.Register<IServiceOperations, ServiceOperations>(
+                Lifestyle.Singleton);
+            container.Register<IIntegrationOperations, IntegrationOperations>(
+                Lifestyle.Singleton);
+            container.Register<IDBConnect>(
+                () => new DBConnect(GetConnectionString()),
+                Lifestyle.Singleton);
+            container.Register<ITextResources, DefaultEnglishTextResources>();
+
+            container.Register<
+                ITextResourcesPersistence,
+                TextResourcesPersistence>(Lifestyle.Singleton);
+            container.Register<IMapper>(() => SetupObjectToObjectMappings(),
+                Lifestyle.Singleton);
+            container.Verify();
+
             return new MainForm(
-                        new DesktopOperations
-                        (new ServiceOperations
-                        (new IntegrationOperations
-                        (new DBConnect(connectionString))), ooMapper),
-                        new TextResourcesPersistence().ReadLocale(locale));
+                container.GetInstance <IDesktopOperations>(),
+                container.GetInstance<ITextResources>());
         }
 
         public void SetupInternationalization()

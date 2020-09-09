@@ -7,7 +7,7 @@ namespace DonationTracker.Desktop
 {
   public class DonorAdditionWindow : Form
   {
-    private readonly DesktopOperations operations;
+    private readonly IDesktopOperations operations;
     private readonly ITextResources textResources;
 
     TextBox FirstNameTextBox = null;
@@ -21,7 +21,7 @@ namespace DonationTracker.Desktop
     Label MostRecentlySavedLabel = null;
 
     public DonorAdditionWindow(
-      DesktopOperations operations,
+      IDesktopOperations operations,
       ITextResources textResources)
     {
       this.operations = operations;

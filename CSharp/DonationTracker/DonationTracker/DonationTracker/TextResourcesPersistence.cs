@@ -33,7 +33,7 @@ namespace DonationTracker.Desktop
 
             if (!File.Exists(enUSPath))
             {
-                WriteToFile(enUSPath, new TextResources());
+                WriteToFile(enUSPath, new DefaultEnglishTextResources());
             }
         }
 
@@ -53,7 +53,7 @@ namespace DonationTracker.Desktop
             }
             catch (IOException)
             {
-                result = new TextResources();
+                result = new DefaultEnglishTextResources();
             }
 
             return result;

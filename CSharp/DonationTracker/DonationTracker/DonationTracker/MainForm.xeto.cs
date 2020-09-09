@@ -8,7 +8,7 @@ namespace DonationTracker.Desktop
 {
     public partial class MainForm : Form
     {
-        private readonly DesktopOperations operations;
+        private readonly IDesktopOperations operations;
         private readonly ITextResources textResources;
         Label TotalDonationAmountLabel = null;
         Label TableTitleLabel = null;
@@ -29,7 +29,7 @@ namespace DonationTracker.Desktop
         const string CURRENCY_SYMBOL_BEFORE = "$";
 
         public MainForm(
-          DesktopOperations operations,
+          IDesktopOperations operations,
           ITextResources textResources
           )
         {
