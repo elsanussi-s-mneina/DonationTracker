@@ -85,12 +85,19 @@ namespace DonationTracker.Desktop
 
         protected void OnShowTableButtonClicked(object sender, EventArgs e)
         {
-            OnShowTable(operations.ReadAllDonors);
-            TableTitleLabel.Text = textResources.AllDonationsTitle;
-            PreviousPageButton.Enabled = false;
-            NextPageButton.Enabled = false;
-            PreviousPageButton.Visible = false;
-            NextPageButton.Visible = false;
+            try
+            {
+                OnShowTable(operations.ReadAllDonors);
+                TableTitleLabel.Text = textResources.AllDonationsTitle;
+                PreviousPageButton.Enabled = false;
+                NextPageButton.Enabled = false;
+                PreviousPageButton.Visible = false;
+                NextPageButton.Visible = false;
+            }
+            catch (DonationTracker.Service.ServiceLayerException)
+            {
+                MessageBox.Show("Failed to read all donors. Is the database running?", MessageBoxType.Error); 
+            }
         }
 
         private void OnShowTable(Func<IList<DonorDonation>> queryFunction)

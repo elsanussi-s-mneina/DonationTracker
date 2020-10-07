@@ -62,11 +62,23 @@ namespace DonationTracker.Service
 
         public IList<DonorDonation> ReadAllDonors()
         {
+            try
+            {
 
-            IList<Integration.DonorDonation> donorDonations =
+                IList<Integration.DonorDonation> donorDonations =
                 operations.ReadAllDonors();
 
-            return ConvertDonorDonationsFrom(donorDonations);
+                return ConvertDonorDonationsFrom(donorDonations);
+            }
+            catch (IntegrationLayerException exception)
+            {
+                throw new ServiceLayerException(exception);
+            }
+            catch (Exception exception)
+            {
+                throw new ServiceLayerException("Something went wrong at the service layer", exception);
+            }
+
         }
 
 
