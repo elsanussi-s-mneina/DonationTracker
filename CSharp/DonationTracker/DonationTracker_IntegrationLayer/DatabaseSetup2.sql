@@ -9,20 +9,20 @@
 
 create table donor
 (
-  id SERIAL,
-  first_name VARCHAR(30),
-  last_name  VARCHAR(30),
-  PRIMARY KEY(id)
+	id SERIAL,
+	first_name VARCHAR(30),
+	last_name  VARCHAR(30),
+	PRIMARY KEY(id)
 );
 
 
 create table donation
 (
-  id SERIAL,
-  donor_id SERIAL,
-  donation_amount DECIMAL NOT NULL,
-  PRIMARY KEY (donor_id, id),
-  FOREIGN KEY(donor_id) REFERENCES donor (id)
+	id SERIAL,
+	donor_id SERIAL,
+	donation_amount DECIMAL NOT NULL,
+	PRIMARY KEY (donor_id, id),
+	FOREIGN KEY(donor_id) REFERENCES donor (id)
 );
 
 

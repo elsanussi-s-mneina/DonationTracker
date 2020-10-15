@@ -1,56 +1,55 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Donation Tracker" ClientSize="700, 450" Padding="10">
-    <StackLayout Orientation="Horizontal">
-        <StackLayout Orientation="Vertical">
-            <Label x:Name="TableTitleLabel"/>
-            <GridView x:Name="DonorsTableView" Width="400" Height="300"/>
+	<StackLayout Orientation="Horizontal">
+		<StackLayout Orientation="Vertical">
+			<Label x:Name="TableTitleLabel"/>
+			<GridView x:Name="DonorsTableView" Width="400" Height="300"/>
 
-            
-            <StackLayout Orientation="Horizontal" Spacing="160" Width="400">
-                <Button x:Name="PreviousPageButton" Click="PreviousPage">← Previous Page</Button>
-                <Button x:Name="NextPageButton" Click="NextPage">Next Page →</Button>
-            </StackLayout>
-        </StackLayout>
+			<StackLayout Orientation="Horizontal" Spacing="160" Width="400">
+				<Button x:Name="PreviousPageButton" Click="PreviousPage">← Previous Page</Button>
+				<Button x:Name="NextPageButton" Click="NextPage">Next Page →</Button>
+			</StackLayout>
+		</StackLayout>
 
-        <StackLayout Orientation="Vertical" Padding="10" Spacing="20">
-            <Button x:Name="ShowAllDonationsButton" 
-                    Click="OnShowTableButtonClicked">Show All Donations</Button>
-            <Button x:Name="ShowDonationsPagedButton"
-                    Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
-            <Button x:Name="ShowPerDonorTotalDonationsButton"
-                    Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
-            <Label x:Name="TotalDonationAmountLabel"/>
-        </StackLayout>
-        
-    </StackLayout>
-    <Form.Menu>
-        <MenuBar>
-            <MenuBar.ApplicationItems>
-                <ButtonMenuItem x:Name="PreferencesButtonMenuItem" 
-                                Text="Preferences.." 
-                                Shortcut="{On Control+O, Mac=Application+Comma}" />
-            </MenuBar.ApplicationItems>
-            <MenuBar.QuitItem>
-                <ButtonMenuItem x:Name="QuitButtonMenuItem" 
-                                Text="Quit" Shortcut="CommonModifier+Q" 
-                                Click="HandleQuit" />
-            </MenuBar.QuitItem>
-            <MenuBar.AboutItem>
-                <ButtonMenuItem x:Name="AboutButtonMenuItem" 
-                                Text="About..." 
-                                Click="HandleAbout" />
-            </MenuBar.AboutItem>
-        </MenuBar>
-    </Form.Menu>
-    <Form.ToolBar>
-        <ToolBar>
-            <ButtonToolItem x:Name="AddDonorsButtonToolItem" 
-                            Text="✎ Add Donors…" 
-                            Click="ShowDonorAdditionWindow"/>
-            <ButtonToolItem x:Name="CalculateTotalDonationAmountButtonToolItem" 
-                            Text="∑ Calculate Total Donation Amount" 
-                            Click="CalculateTotalDonationAmount"/>
-        </ToolBar>
-    </Form.ToolBar>
+		<StackLayout Orientation="Vertical" Padding="10" Spacing="20">
+			<Button x:Name="ShowAllDonationsButton" 
+				Click="OnShowTableButtonClicked">Show All Donations</Button>
+			<Button x:Name="ShowDonationsPagedButton"
+				Click="OnShowTableDonationPaginated">Show Donations (One page at a time)</Button>
+			<Button x:Name="ShowPerDonorTotalDonationsButton"
+				Click="CalculatePerDonorTotals">Show Per Donor Total Donations</Button>
+			<Label x:Name="TotalDonationAmountLabel"/>
+		</StackLayout>
+
+	</StackLayout>
+	<Form.Menu>
+		<MenuBar>
+			<MenuBar.ApplicationItems>
+				<ButtonMenuItem x:Name="PreferencesButtonMenuItem" 
+					Text="Preferences.." 
+					Shortcut="{On Control+O, Mac=Application+Comma}" />
+			</MenuBar.ApplicationItems>
+			<MenuBar.QuitItem>
+				<ButtonMenuItem x:Name="QuitButtonMenuItem" 
+					Text="Quit" Shortcut="CommonModifier+Q" 
+					Click="HandleQuit" />
+			</MenuBar.QuitItem>
+			<MenuBar.AboutItem>
+				<ButtonMenuItem x:Name="AboutButtonMenuItem" 
+					Text="About..." 
+					Click="HandleAbout" />
+			</MenuBar.AboutItem>
+		</MenuBar>
+	</Form.Menu>
+	<Form.ToolBar>
+		<ToolBar>
+			<ButtonToolItem x:Name="AddDonorsButtonToolItem" 
+				Text="✎ Add Donors…" 
+				Click="ShowDonorAdditionWindow"/>
+			<ButtonToolItem x:Name="CalculateTotalDonationAmountButtonToolItem" 
+				Text="∑ Calculate Total Donation Amount" 
+				Click="CalculateTotalDonationAmount"/>
+		</ToolBar>
+	</Form.ToolBar>
 
 </Form>

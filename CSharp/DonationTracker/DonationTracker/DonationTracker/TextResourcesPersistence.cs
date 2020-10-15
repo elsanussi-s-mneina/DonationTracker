@@ -2,61 +2,61 @@
 
 namespace DonationTracker.Desktop
 {
-    public class TextResourcesPersistence : ITextResourcesPersistence
-    {
-        const string internationalizationDirectoryPath = "internationalization";
+	public class TextResourcesPersistence : ITextResourcesPersistence
+	{
+		const string internationalizationDirectoryPath = "internationalization";
 
-        public TextResourcesPersistence()
-        {
-        }
+		public TextResourcesPersistence()
+		{
+		}
 
-        public ITextResources ReadFromFile(string filePath)
-        {
-            string[] lines = File.ReadAllLines(filePath);
-            return new TextResources(lines);
-        }
+		public ITextResources ReadFromFile(string filePath)
+		{
+			string[] lines = File.ReadAllLines(filePath);
+			return new TextResources(lines);
+		}
 
-        public void WriteToFile(string filePath, ITextResources resources)
-        {
-            File.WriteAllLines(filePath, resources.AsLines);
-        }
+		public void WriteToFile(string filePath, ITextResources resources)
+		{
+			File.WriteAllLines(filePath, resources.AsLines);
+		}
 
-        public void SetupInternationalizationDirectory()
-        {
-            if (!Directory.Exists(internationalizationDirectoryPath))
-            {
-                Directory.CreateDirectory(internationalizationDirectoryPath);
-            }
+		public void SetupInternationalizationDirectory()
+		{
+			if (!Directory.Exists(internationalizationDirectoryPath))
+			{
+				Directory.CreateDirectory(internationalizationDirectoryPath);
+			}
 
-            // Use english US as default locale
-            string enUSPath = ConstructLocalePath("en_US");
+			// Use english US as default locale
+			string enUSPath = ConstructLocalePath("en_US");
 
-            if (!File.Exists(enUSPath))
-            {
-                WriteToFile(enUSPath, new DefaultEnglishTextResources());
-            }
-        }
+			if (!File.Exists(enUSPath))
+			{
+				WriteToFile(enUSPath, new DefaultEnglishTextResources());
+			}
+		}
 
-        public string ConstructLocalePath(string locale)
-        {
-            return Path.Combine(internationalizationDirectoryPath, locale + ".txt");
-        }
+		public string ConstructLocalePath(string locale)
+		{
+			return Path.Combine(internationalizationDirectoryPath, locale + ".txt");
+		}
 
-        public ITextResources ReadLocale(string locale)
-        {
-            string resourcesPath = ConstructLocalePath(locale);
-            ITextResources result;
+		public ITextResources ReadLocale(string locale)
+		{
+			string resourcesPath = ConstructLocalePath(locale);
+			ITextResources result;
 
-            try
-            {
-                result = ReadFromFile(resourcesPath);
-            }
-            catch (IOException)
-            {
-                result = new DefaultEnglishTextResources();
-            }
+			try
+			{
+				result = ReadFromFile(resourcesPath);
+			}
+			catch (IOException)
+			{
+				result = new DefaultEnglishTextResources();
+			}
 
-            return result;
-        }
-    }
+			return result;
+		}
+	}
 }
