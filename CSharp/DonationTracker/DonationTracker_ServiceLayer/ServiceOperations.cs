@@ -53,11 +53,23 @@ namespace DonationTracker.Service
 
 		private IList<DonorDonation> ConvertDonorDonationsFrom(IList<Integration.DonorDonation> donorDonationsIn)
 		{
-			IList<DonorDonation> donorDonationsOut =
+			try
+			{
+				IList<DonorDonation> donorDonationsOut =
 			  mapper.Map<IList<Integration.DonorDonation>,
 						 IList<Service.DonorDonation>>
 					 (donorDonationsIn);
-			return donorDonationsOut;
+				return donorDonationsOut;
+			}
+			catch (IntegrationLayerException exception)
+			{
+				throw new ServiceLayerException(exception);
+			}
+			catch (Exception exception)
+			{
+				throw new ServiceLayerException("Something went wrong at the service layer", exception);
+			}
+
 		}
 
 		public IList<DonorDonation> ReadAllDonors()
@@ -84,37 +96,87 @@ namespace DonationTracker.Service
 
 		public IList<DonorDonation> ReadSubsetOfDonors(int offset, int limit)
 		{
-			IList<Integration.DonorDonation> donorDonations = operations.ReadSubsetOfDonors(offset, limit);
-			return ConvertDonorDonationsFrom(donorDonations);
+			try
+			{
+				IList<Integration.DonorDonation> donorDonations = operations.ReadSubsetOfDonors(offset, limit);
+				return ConvertDonorDonationsFrom(donorDonations);
+			}
+			catch (IntegrationLayerException exception)
+			{
+				throw new ServiceLayerException(exception);
+			}
+			catch (Exception exception)
+			{
+				throw new ServiceLayerException("Something went wrong at the service layer", exception);
+			}
+
 		}
 
 
 
 		public IList<DonorDonationTotalByDonor> CalculatePerDonorTotalDonationAmount()
 		{
-			IList<Integration.DonorDonationTotalByDonor> donorDonations2 =
-				operations.CalculatePerDonorTotalDonationAmount();
+			try
+			{
 
-			IList<DonorDonationTotalByDonor> donorDonations =
-			  mapper.Map<IList<Integration.DonorDonationTotalByDonor>,
-						 IList<Service.DonorDonationTotalByDonor>>
-						 (donorDonations2);
-			return donorDonations;
+				IList<Integration.DonorDonationTotalByDonor> donorDonations2 =
+		operations.CalculatePerDonorTotalDonationAmount();
+
+				IList<DonorDonationTotalByDonor> donorDonations =
+				  mapper.Map<IList<Integration.DonorDonationTotalByDonor>,
+							 IList<Service.DonorDonationTotalByDonor>>
+							 (donorDonations2);
+				return donorDonations;
+			}
+			catch (IntegrationLayerException exception)
+			{
+				throw new ServiceLayerException(exception);
+			}
+			catch (Exception exception)
+			{
+				throw new ServiceLayerException("Something went wrong at the service layer", exception);
+			}
+
 		}
 
 		public int? GetIDOfMatchingDonor(DonorQuery donorQuery)
 		{
-			var donorQuery2 =
-			mapper.Map<Service.DonorQuery, Integration.DonorQuery>(donorQuery);
+			try
+			{
+				var donorQuery2 =
+mapper.Map<Service.DonorQuery, Integration.DonorQuery>(donorQuery);
 
-			return operations.GetIDOfMatchingDonor(donorQuery2);
+				return operations.GetIDOfMatchingDonor(donorQuery2);
+			}
+			catch (IntegrationLayerException exception)
+			{
+				throw new ServiceLayerException(exception);
+			}
+			catch (Exception exception)
+			{
+				throw new ServiceLayerException("Something went wrong at the service layer", exception);
+			}
+
 		}
 
 		public decimal CalculateTotalDonationAmount()
 		{
-			decimal total = operations.CalculateTotalDonationAmount();
+			try
+			{
 
-			return total;
+				decimal total = operations.CalculateTotalDonationAmount();
+
+				return total;
+			}
+			catch (IntegrationLayerException exception)
+			{
+				throw new ServiceLayerException(exception);
+			}
+			catch (Exception exception)
+			{
+				throw new ServiceLayerException("Something went wrong at the service layer", exception);
+			}
+
 		}
 	}
 }

@@ -66,21 +66,28 @@ namespace DonationTracker.Desktop
 
 		protected void OnShowTableDonationPaginated(object sender, EventArgs e)
 		{
-			OnShowTable(() => { return operations.ReadSubsetOfDonors(startIndex, pageLength); });
-			PreviousPageButton.Enabled = true;
-			NextPageButton.Enabled = true;
-			PreviousPageButton.Visible = true;
-			NextPageButton.Visible = true;
-			TableTitleLabel.Text = textResources.DonationsPagePrefix
-			   + (1 + (startIndex / pageLength))
-			   + textResources.DonationsPageSuffix;
-
-			if (startIndex < pageLength)
+			try
 			{
-				PreviousPageButton.Enabled = false;
+				OnShowTable(() => { return operations.ReadSubsetOfDonors(startIndex, pageLength); });
+				PreviousPageButton.Enabled = true;
+				NextPageButton.Enabled = true;
+				PreviousPageButton.Visible = true;
+				NextPageButton.Visible = true;
+				TableTitleLabel.Text = textResources.DonationsPagePrefix
+				   + (1 + (startIndex / pageLength))
+				   + textResources.DonationsPageSuffix;
+
+				if (startIndex < pageLength)
+				{
+					PreviousPageButton.Enabled = false;
+				}
+				PreviousPageButton.Visible = true;
+				NextPageButton.Visible = true;
 			}
-			PreviousPageButton.Visible = true;
-			NextPageButton.Visible = true;
+			catch (DonationTracker.Service.ServiceLayerException)
+			{
+				MessageBox.Show("Failed to read a page of donors. Is the database running?", MessageBoxType.Error);
+			}
 		}
 
 		protected void OnShowTableButtonClicked(object sender, EventArgs e)
@@ -133,9 +140,16 @@ namespace DonationTracker.Desktop
 
 		protected void CalculateTotalDonationAmount(object sender, EventArgs e)
 		{
-			decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
-			TotalDonationAmountLabel.Text = textResources.TotalPrefix
-				  + AddCurrencySymbol(totalDonationAmount);
+			try
+			{
+				decimal totalDonationAmount = operations.CalculateTotalDonationAmount();
+				TotalDonationAmountLabel.Text = textResources.TotalPrefix
+					  + AddCurrencySymbol(totalDonationAmount);
+			}
+			catch (DonationTracker.Service.ServiceLayerException)
+			{
+				MessageBox.Show("Failed to calculate the total donation amount. Is the database running?", MessageBoxType.Error);
+			}
 		}
 
 		/// <summary>
@@ -150,36 +164,42 @@ namespace DonationTracker.Desktop
 
 		protected void CalculatePerDonorTotals(object sender, EventArgs e)
 		{
-
-			PreviousPageButton.Enabled = false;
-			NextPageButton.Enabled = false;
-			PreviousPageButton.Visible = false;
-			NextPageButton.Visible = false;
-
-			IList<Model.DonorDonationTotalByDonor> donorDonations = operations.CalculatePerDonorTotalDonationAmount();
-
-			ClearTable();
-			DonorsTableView.DataStore = donorDonations;
-
-			DonorsTableView.Columns.Add(new GridColumn
+			try
 			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.FirstName) },
-				HeaderText = textResources.FirstNameHeader
-			});
+				PreviousPageButton.Enabled = false;
+				NextPageButton.Enabled = false;
+				PreviousPageButton.Visible = false;
+				NextPageButton.Visible = false;
 
-			DonorsTableView.Columns.Add(new GridColumn
+				IList<Model.DonorDonationTotalByDonor> donorDonations = operations.CalculatePerDonorTotalDonationAmount();
+
+				ClearTable();
+				DonorsTableView.DataStore = donorDonations;
+
+				DonorsTableView.Columns.Add(new GridColumn
+				{
+					DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.FirstName) },
+					HeaderText = textResources.FirstNameHeader
+				});
+
+				DonorsTableView.Columns.Add(new GridColumn
+				{
+					DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.LastName) },
+					HeaderText = textResources.LastNameHeader
+				});
+
+				DonorsTableView.Columns.Add(new GridColumn
+				{
+					DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.TotalDonationAmount.ToString()) },
+					HeaderText = textResources.TotalAmountHeader
+				});
+
+				TableTitleLabel.Text = textResources.TotalAmountPerDonorTitle;
+			}
+			catch (DonationTracker.Service.ServiceLayerException)
 			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.LastName) },
-				HeaderText = textResources.LastNameHeader
-			});
-
-			DonorsTableView.Columns.Add(new GridColumn
-			{
-				DataCell = new TextBoxCell { Binding = Binding.Property<Model.DonorDonationTotalByDonor, string>(r => r.TotalDonationAmount.ToString()) },
-				HeaderText = textResources.TotalAmountHeader
-			});
-
-			TableTitleLabel.Text = textResources.TotalAmountPerDonorTitle;
+				MessageBox.Show("Failed to calculate per donor donation totals. Is the database running?", MessageBoxType.Error);
+			}
 		}
 
 		protected void NextPage(object sender, EventArgs e)
