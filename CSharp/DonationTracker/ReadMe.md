@@ -32,7 +32,7 @@ Note: if you are building all projects in Mac OS, you will get the following err
 This error is expected, and happens because there is no way to run Windows specific code in Mac OS.
 
 Instead run the DonationTracker.Mac project instead.
-If you are running Visual Studio on Mac, unload the DonationTracker.WPF project from the soluttion, and you will not see the error again.
+If you are running Visual Studio on Mac, unload the DonationTracker.WPF project from the solution, and you will not see the error again.
 
 
 
