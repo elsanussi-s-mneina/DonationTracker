@@ -6,6 +6,7 @@
 
 ## Setup:
 - You need PostgreSQL to run the database part.
+    (To run PostgreSQL run the following command `pg_ctl -D /usr/local/var/postgres start`)
 Although the Program will start without it, nothing will function, and if you click
 any button it will crash.
 
